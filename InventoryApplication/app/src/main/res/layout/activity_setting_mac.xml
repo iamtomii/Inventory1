@@ -89,13 +89,12 @@
             android:background="#ffffff"
             android:ems="17"
             android:enabled="true"
-            android:inputType="text"
+            android:inputType="number"
             android:padding="5dp"
             android:hint="VD: 33"
             android:textColorHint="@color/colorGrey"
             android:textColor="@color/colorBlack"
             android:textSize="24sp" />
-
 
     </LinearLayout>
 

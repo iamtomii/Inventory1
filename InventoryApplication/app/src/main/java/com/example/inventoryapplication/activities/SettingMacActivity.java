@@ -63,10 +63,12 @@ public class SettingMacActivity extends AppCompatActivity implements View.OnClic
                     showToast("MAC DEVICE IS EMPTY");
                     return;
                 }
+
                 if(ip.isEmpty()){
                     showToast("IP ADDRESS IS EMPTY");
                     return;
                 }
+
                 if(port.isEmpty()){
                     showToast("PORT IS EMPTY");
                     return;
@@ -75,6 +77,11 @@ public class SettingMacActivity extends AppCompatActivity implements View.OnClic
                     showToast("POWER IS EMPTY");
                     return;
                 }
+                if(Integer.parseInt(power)>33||Integer.parseInt(power)<0){
+                    showToast("POWER NOT in 0-33");
+                    return;
+                }
+
                 //Write to config file
                 confWrite("IP",ip);
                 confWrite("PORT",port);
