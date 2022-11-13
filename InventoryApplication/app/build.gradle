@@ -31,7 +31,7 @@ dependencies {
     implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6'
     implementation files('libs/sleduhf-v1.0.3.jar')
     implementation files('libs/ExplorationRfid.jar')
-    implementation files('libs/TecRfidSuite.jar')
+    //implementation files('libs/TecRfidSuite.jar')
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

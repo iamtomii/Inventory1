@@ -135,13 +135,20 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private void initDeviceScanVN(){
         //bluetoothDeviceConnect();
         connectThread = new ConnectThread();
-        connectThread.connect(bluetoothDeviceConnected2(), this, new Callable() {
+        new Thread(new Runnable() {
             @Override
-            public void call(boolean result) {
-                showToast("Starting...");
-                dismissProgress();
+            public void run() {
+                connectThread.connect(bluetoothDeviceConnected2(), ScanDataActivity.this, new Callable() {
+                    @Override
+                    public void call(boolean result) {
+                        showToast("Starting...");
+                        dismissProgress();
+                    }
+                });
+
             }
-        });
+        }).start();
+
     }
 
     private BluetoothDevice bluetoothDeviceConnected2(){
@@ -591,6 +598,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 //onBackPressed();
+                eventEnableButton();
             }
         });
 
@@ -1045,7 +1053,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         btnDelete_all.setClickable(true);
         btnSave.setClickable(true);
         // #ADD_ERROR
-        btn_error.setClickable(false);
+        btn_error.setClickable(true);
     }
 
     /**
