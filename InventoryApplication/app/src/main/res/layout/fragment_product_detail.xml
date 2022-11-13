@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Design by: Tai-LQ-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:background="#A6000000">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="@dimen/size10dp"
+            android:paddingBottom="@dimen/size10dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/size5dp">
+
+                <TextView
+                    android:id="@+id/search_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/product_detail"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/size20dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/size5dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_span="3"
+                    android:gravity="center"
+                    android:padding="@dimen/size10dp">
+
+                    <TableRow
+                        android:id="@+id/row_cd1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/barcode_product"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/search_result_cd1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:ems="10"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_cd2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="cd2"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/search_result_cd2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:ems="10"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_date_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/date_scan"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/search_result_date_scan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_shelf_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/shelf_number"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/search_result_shelf_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:ems="10"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_partner_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/partner"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/partner_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_box_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:id="@+id/box_no_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/box_no"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/box_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_slip_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/slip_no"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/slip_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_process_table_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/processing_table_no"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/process_table_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_vendor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/vendor"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/vendor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_unit_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/unit_price"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/unit_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/layout_size_text_edit_product"
+                            android:gravity="center|left"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/size20dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_base_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:id="@+id/price1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/base_price"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <EditText
+                            android:id="@+id/search_result_base_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size50dp"
+                            android:background="@drawable/textborder2"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:maxLength="7"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/white" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_tax_include_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:id="@+id/price2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/tax_include_pride"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <EditText
+                            android:id="@+id/search_result_tax_include_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size50dp"
+                            android:background="@drawable/textborder2"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:maxLength="7"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/white" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/quantity"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <EditText
+                            android:id="@+id/search_result_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size50dp"
+                            android:background="@drawable/textborder2"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/white" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_shelf_from"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/shelf_no"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <EditText
+                            android:id="@+id/shelf_from"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size50dp"
+                            android:background="@drawable/textborder2"
+                            android:ems="10"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="6"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/white" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/row_shelf_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/size5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size5dp"
+                            android:text="@string/after_change_self_no"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size1sp"
+                            android:textColor="@color/colorWhite" />
+
+                        <EditText
+                            android:id="@+id/shelf_to"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size50dp"
+                            android:background="@drawable/textborder2"
+                            android:ems="10"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="6"
+                            android:paddingStart="@dimen/size5dp"
+                            android:paddingEnd="@dimen/size5dp"
+                            android:textColor="@color/white" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <LinearLayout
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO"
+                        app:srcCompat="@drawable/sub_btn1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_back"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO"
+                        app:srcCompat="@drawable/sub_btn6" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_finish"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO"
+                        app:srcCompat="@drawable/sub_btn7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_delete"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</LinearLayout>

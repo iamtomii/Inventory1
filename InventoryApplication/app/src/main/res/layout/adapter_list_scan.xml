@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
+
+    <TableRow
+        android:id="@+id/lv_row"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/list_column1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_span="1"
+            android:background="@drawable/cell_shape_title"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/size10dp"
+            android:paddingBottom="@dimen/size10dp"
+            android:text="Column 1"
+            android:textSize="@dimen/lv_text_size" />
+
+        <TextView
+            android:id="@+id/list_column2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_span="3"
+            android:background="@drawable/cell_shape_title"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/size10dp"
+            android:paddingBottom="@dimen/size10dp"
+            android:text="Column 2"
+            android:textSize="@dimen/lv_text_size" />
+
+        <TextView
+            android:id="@+id/list_column3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_span="3"
+            android:background="@drawable/cell_shape_title"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/size10dp"
+            android:paddingBottom="@dimen/size10dp"
+            android:text="Column 3"
+            android:textSize="@dimen/lv_text_size" />
+
+        <TextView
+            android:id="@+id/list_column4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_span="1"
+            android:background="@drawable/cell_shape_title"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/size10dp"
+            android:paddingBottom="@dimen/size10dp"
+            android:text="Column 4"
+            android:textSize="@dimen/lv_text_size" />
+
+
+
+    </TableRow>
+
+</TableLayout>

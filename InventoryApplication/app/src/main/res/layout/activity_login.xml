@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:weightSum="7"
+    android:background="#D5F1BD">
+
+    <ImageView
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/sa_logo"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:layout_weight="1"
+        android:src="@drawable/user_id"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/edt_userid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:background="@drawable/textborder"
+        android:inputType="text"
+        android:text="user_test001"
+        android:padding="10dp" />
+
+    <ImageView
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:layout_weight="1"
+        android:src="@drawable/password"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/edt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="@drawable/textborder"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:text="987654321"
+        android:padding="10dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="185dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:layout_weight="1"
+        android:background="@drawable/login" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="@dimen/size10dp"
+        android:layout_weight="1"
+
+        tools:ignore="ContentDescription" />
+
+
+    <TextView
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/txv_device_id"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="@dimen/size10dp"
+        android:text="@string/device_id"
+        android:textColor="@color/black"
+        android:textAlignment="center" />
+
+    <TableLayout
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textColor="@color/black"
+                android:id="@+id/txv_app_version"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="top|start"
+                android:layout_marginBottom="@dimen/size10dp"
+                android:text="@string/app_version"
+                android:textAlignment="center" />
+
+            <TextView
+                android:textColor="@color/black"
+                android:id="@+id/txv_db_version"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="top|end"
+                android:layout_marginBottom="@dimen/size10dp"
+                android:text="@string/database_version"
+                android:textAlignment="center" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

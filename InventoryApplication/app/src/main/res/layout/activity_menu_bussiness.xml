@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteLight"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:paddingTop="@dimen/size20dp"
+            android:paddingBottom="@dimen/size18dp"
+            android:src="@drawable/sa_logo"
+            tools:ignore="ContentDescription,Suspicious0dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size20dp"
+        android:layout_marginBottom="@dimen/size20dp"
+        android:orientation="vertical">
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:visibility="gone"
+            android:id="@+id/btn_incomming"
+            android:layout_width="match_parent"
+            android:layout_height="85sp"
+            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginEnd="@dimen/size20dp"
+            android:drawableStart="@drawable/return_candidate"
+            android:drawableTint="@color/colorWhiteDark"
+            android:drawablePadding="@dimen/size10dp"
+            android:paddingStart="@dimen/size14dp"
+            android:paddingEnd="@dimen/size1sp"
+            android:background="@color/white"
+            android:backgroundTint="#B38807"
+            android:text="INCOMMING"
+            android:textSize="@dimen/size28dp"
+            android:textColor="@color/colorWhiteDark"
+            android:textStyle="bold"
+            android:gravity="center|start" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size14dp"
+            android:background="@color/colorWhiteLight" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginEnd="@dimen/size20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_inventory"
+                android:layout_width="match_parent"
+                android:layout_height="85sp"
+                android:background="@color/white"
+                android:backgroundTint="#30B0C6"
+                android:drawableStart="@drawable/product_change"
+                android:drawablePadding="@dimen/size10dp"
+                android:drawableTint="@color/colorWhiteDark"
+                android:gravity="center|start"
+                android:paddingStart="@dimen/size14dp"
+                android:paddingEnd="@dimen/size1sp"
+                android:text="INVENTORY"
+                android:textColor="@color/colorWhiteDark"
+                android:textSize="@dimen/size28dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:translationZ="1dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/inventory_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:textColor="#0017EF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:translationZ="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btn_inventory"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size14dp"
+            android:background="@color/colorWhiteLight" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_back_menu"
+            android:layout_width="match_parent"
+            android:layout_height="85sp"
+            android:layout_marginStart="@dimen/size20dp"
+            android:layout_marginEnd="@dimen/size20dp"
+            android:drawableStart="@drawable/logout_menu_app"
+            android:drawableTint="@color/white"
+            android:drawablePadding="@dimen/size10dp"
+            android:paddingStart="@dimen/size14dp"
+            android:paddingEnd="@dimen/size1sp"
+            android:background="@color/white"
+            android:backgroundTint="#615F5F"
+            android:textSize="@dimen/size28dp"
+            android:text="BACK TO MENU"
+            android:textColor="@color/colorWhiteDark"
+            android:gravity="center|start" />
+
+    </LinearLayout>
+
+</LinearLayout>

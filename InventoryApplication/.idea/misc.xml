@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/drawable-v24/cell_shape_title.xml" value="0.2775" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/drawable-v24/cell_shape_title3.xml" value="0.2775" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.196" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.196" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/drawable-v24/textborder.xml" value="0.2755" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.196" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout-port/devicelist.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout-port/mainmenu.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout-port/setting.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_menu_app.xml" value="0.23052536231884058" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_menu_bussiness.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_menu_bussiness_app.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_scan_data.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/activity_scanner.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/adapter_list_scan.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/barcode.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/devicelist.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/mainmenu.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/search.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/layout/setting.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/menu/barcodemark.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/menu/conditionmark_1.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/InventoryApplication/app/src/main/res/menu/main.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/drawable-xhdpi/button_circle_custom.xml" value="0.187" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/drawable/button_gradiant_1.xml" value="0.196" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/drawable/cell_shape_title2.xml" value="0.2775" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/drawable/textborder2.xml" value="0.2775" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout-port/activity_search.xml" value="0.358695652173913" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout-port/mainmenu.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/activity_menu_app.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/activity_menu_bussiness.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/activity_scan_data.xml" value="0.358695652173913" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/activity_scanner.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/activity_setting_mac.xml" value="0.18802083333333333" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/adapter_list_scan.xml" value="0.358695652173913" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/fragment_product_detail.xml" value="0.13125" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/layout/mainmenu.xml" value="0.1591710758377425" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.196" />
+        <entry key="..\:/android-project/Inventory_app/rfid-api-vn/InventoryApplication/app/src/main/res/mipmap-xxhdpi/ic_launcher.xml" value="0.196" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

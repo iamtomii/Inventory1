@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_padding">20dp</dimen>
+    <dimen name="activity_vertical_padding">20dp</dimen>
+
+    <dimen name="size10dp">10sp</dimen>
+    <dimen name="size5dp">5sp</dimen>
+    <dimen name="size8dp">8sp</dimen>
+    <dimen name="size28dp">28sp</dimen>
+    <dimen name="size26dp">26sp</dimen>
+    <dimen name="size20dp">20sp</dimen>
+    <dimen name="size50dp">50sp</dimen>
+    <dimen name="size18dp">18sp</dimen>
+    <dimen name="size16dp">16sp</dimen>
+    <dimen name="size14dp">14sp</dimen>
+    <dimen name="size12dp">12sp</dimen>
+    <dimen name="buttonback">150sp</dimen>
+    <dimen name="fab_margin">16sp</dimen>
+    <dimen name="size10sp">10sp</dimen>
+    <dimen name="size38sp">38sp</dimen>
+    <dimen name="size52sp">52sp</dimen>
+    <dimen name="size53sp">53sp</dimen>
+    <dimen name="size1sp">1sp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="sizeTextDetail">17sp</dimen>
+    <dimen name="paddingFragmentSetting">6dp</dimen>
+    <dimen name="sizeTextFragmentSetting">25sp</dimen>
+
+    <!-- dimen main menu -->
+    <dimen name="margin_business">3dp</dimen>
+    <dimen name="height_one_business">80dp</dimen>
+    <dimen name="width_one_business">40dp</dimen>
+
+    <dimen name="height_two_business">110dp</dimen>
+    <dimen name="height_three_business">165dp</dimen>
+    <dimen name="width_image_business">40dp</dimen>
+    <dimen name="height_image_business">40dp</dimen>
+
+    <dimen name="size_text_business">16sp</dimen>
+
+    <!--dimen product setting-->
+    <dimen name="size_text_view_product">20sp</dimen>
+    <dimen name="size_text_edit_product">25sp</dimen>
+    <dimen name="layout_size_text_edit_product">50sp</dimen>
+
+    <dimen name="size_btn_product_setting">17sp</dimen>
+
+    <dimen name="width_img_edit_text_product_setting">50dp</dimen>
+
+    <dimen name="width_img_btn_product_setting">40dp</dimen>
+    <dimen name="height_img_btn_product_setting">40dp</dimen>
+
+    <dimen name="width_img_text_view_product_setting">25dp</dimen>
+    <dimen name="height_img_text_view_product_setting">25dp</dimen>
+
+    <dimen name="padding_btn_product_setting">5dp</dimen>
+    <dimen name="padding_start_edit_text">30dp</dimen>
+    <dimen name="padding_start_text_view">5dp</dimen>
+    <dimen name="padding_top_row">10dp</dimen>
+
+    <!--dimen register data-->
+    <dimen name="size_text_view_register">12sp</dimen>
+    <dimen name="size_btn_register_data">12sp</dimen>
+
+    <dimen name="width_img_text_view_register_data">25dp</dimen>
+    <dimen name="height_img_text_view_register_data">25dp</dimen>
+
+    <dimen name="width_img_btn_register_data">40dp</dimen>
+    <dimen name="height_img_btn_register_data">40dp</dimen>
+
+    <dimen name="padding_btn_register_data">5dp</dimen>
+
+    <!--dimen submit fragment-->
+    <dimen name="text_size">20sp</dimen>
+
+    <!--dimen list view text size-->
+    <dimen name="lv_text_size">16sp</dimen>
+    <dimen name="lv_text_size2">14sp</dimen>
+
+</resources>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Design by: Tai-LQ-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4E5161"
+    android:gravity="top|center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape_title">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/size5dp">
+
+                <TextView
+                    android:id="@+id/condition_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size5dp"
+                    android:text="@string/barcode_product"
+                    android:textColor="@color/colorWhite" />
+
+                <EditText
+                    android:id="@+id/search_cd1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size50dp"
+                    android:background="@drawable/textborder2"
+                    android:ems="8"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    android:paddingStart="@dimen/size5dp"
+                    android:paddingEnd="@dimen/size5dp"
+                    android:textColor="@color/white" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/size5dp">
+
+                <TextView
+                    android:id="@+id/condition_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size5dp"
+                    android:text="@string/name_product"
+                    android:textColor="@color/colorWhite" />
+
+                <EditText
+                    android:id="@+id/search_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size50dp"
+                    android:background="@drawable/textborder2"
+                    android:ems="8"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    android:paddingStart="@dimen/size5dp"
+                    android:paddingEnd="@dimen/size5dp"
+                    android:textColor="@color/white" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:background="@drawable/cell_shape_title2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padding_btn_register_data"
+            android:paddingBottom="@dimen/padding_btn_register_data">
+
+            <ImageView
+                android:layout_width="@dimen/width_img_btn_register_data"
+                android:layout_height="@dimen/height_img_btn_register_data"
+                app:srcCompat="@drawable/sub_btn4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_search"
+                android:textColor="@color/default_info_row_1"
+                android:textSize="@dimen/size_btn_register_data" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#4E5161">
+
+            <TextView
+                android:id="@+id/lv_column1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_span="1"
+                android:background="@drawable/cell_shape_title"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/size10dp"
+                android:paddingBottom="@dimen/size10dp"
+                android:text="Num"
+                android:textColor="@color/default_info_row_1"
+                android:textSize="@dimen/lv_text_size"
+
+                />
+
+            <TextView
+                android:id="@+id/lv_column2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_span="3"
+                android:background="@drawable/cell_shape_title"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/size10dp"
+                android:paddingBottom="@dimen/size10dp"
+                android:text="Name"
+                android:textColor="@color/default_info_row_1"
+                android:textSize="@dimen/lv_text_size"
+                />
+
+            <TextView
+                android:id="@+id/lv_column3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_span="3"
+                android:background="@drawable/cell_shape_title"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/size10dp"
+                android:paddingBottom="@dimen/size10dp"
+                android:textColor="@color/default_info_row_1"
+                android:text="Barcode"
+                android:textSize="@dimen/lv_text_size"/>
+
+            <TextView
+
+                android:id="@+id/lv_column4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_span="1"
+                android:background="@drawable/cell_shape_title"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/size10dp"
+                android:paddingBottom="@dimen/size10dp"
+                android:text="Quan"
+                android:textColor="@color/default_info_row_1"
+                android:textSize="@dimen/lv_text_size"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/list_result_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="68dp"
+            android:background="@color/colorWhite"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:gravity="bottom">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#4E5161"
+                android:gravity="bottom">
+
+                <LinearLayout
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:layout_column="0"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size5dp"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO" app:srcCompat="@drawable/sub_btn1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_back"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_delete_all_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:layout_column="5"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size5dp"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO" app:srcCompat="@drawable/sub_btn5"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_delete_all_search"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/btn_previous"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:layout_column="5"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size5dp"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO" app:srcCompat="@drawable/ic_keyboard_arrow_left_white_24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_previous"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cell_shape_title2"
+                    android:layout_column="6"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size5dp"
+                    android:paddingTop="@dimen/padding_btn_register_data"
+                    android:paddingBottom="@dimen/padding_btn_register_data">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_img_btn_register_data"
+                        android:layout_height="@dimen/height_img_btn_register_data"
+                        android:contentDescription="TODO" app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_next"
+                        android:textColor="@color/default_info_row_1"
+                        android:textSize="@dimen/size_btn_register_data" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

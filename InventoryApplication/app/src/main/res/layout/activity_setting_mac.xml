@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+    <!--    android:background="#EEE8AA">-->
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_weight="9"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title">
+
+
+        <TextView
+            android:layout_width="310dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="MAC Address:"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_mac"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="#ffffff"
+            android:ems="17"
+            android:enabled="true"
+            android:inputType="text"
+            android:padding="5dp"
+            android:hint="VD: 00:15:83:39:37:BB"
+            android:textColorHint="@color/colorGrey"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+
+        <TextView
+            android:layout_width="310dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="Power Level (0-33):"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+
+        <!--<Spinner
+            android:id="@+id/spinner_power_level"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="#ffffff"
+            android:ems="17"
+            android:textSize="24sp"
+            />-->
+        <EditText
+            android:id="@+id/edt_power_level"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="#ffffff"
+            android:ems="17"
+            android:enabled="true"
+            android:inputType="text"
+            android:padding="5dp"
+            android:hint="VD: 33"
+            android:textColorHint="@color/colorGrey"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+
+        <TextView
+            android:layout_width="310dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="IP Address:"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_ip"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="#ffffff"
+            android:ems="17"
+            android:enabled="true"
+            android:inputType="text"
+            android:padding="5dp"
+            android:hint="VD: 192.168.1.162"
+            android:textColorHint="@color/colorGrey"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+
+        <TextView
+            android:layout_width="310dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="Port"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_port"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="#ffffff"
+            android:ems="17"
+            android:enabled="true"
+            android:inputType="text"
+            android:padding="5dp"
+            android:hint="VD: 8080"
+            android:textColorHint="@color/colorGrey"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <android.widget.Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_gradiant_1"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.widget.Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_gradiant_2"
+            android:text="CANCEL"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="SETTING"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

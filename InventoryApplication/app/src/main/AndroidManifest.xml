@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.inventoryapplication">
+
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS  " />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE " />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- SDK_ADD -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:installLocation="preferExternal"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.InventoryApplication"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SettingMacActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ScannerSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ScanDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MenuBussinessActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.MenuAppActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- TOSHIBA TEC -->
+        <activity
+            android:name=".toshibatec_scanner.MainMenuActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".toshibatec_scanner.ConnectDeviceActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".toshibatec_scanner.ReadTagActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_readtest"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".toshibatec_scanner.SettingActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_setting"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".toshibatec_scanner.ReadBarcodeActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_readbarcode"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".toshibatec_scanner.FrequencySelectActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_frequencyselect"
+            android:screenOrientation="landscape" />
+    </application>
+
+</manifest>
