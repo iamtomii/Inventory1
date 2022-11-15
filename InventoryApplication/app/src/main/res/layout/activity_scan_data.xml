@@ -9,6 +9,7 @@
     android:focusable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.widget.Button
         android:id="@+id/btn_error"
         android:layout_width="50dp"
@@ -517,7 +518,7 @@
         android:background="@android:color/holo_red_dark"
         android:orientation="horizontal"
         android:visibility="visible"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_percent="0.069767445" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bottom_start"
@@ -526,8 +527,6 @@
         android:background="@android:color/holo_red_dark"
         android:orientation="horizontal"
         android:visibility="visible"
-        app:layout_constraintGuide_percent="0.5"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="284dp" />
+        app:layout_constraintGuide_begin="366dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
