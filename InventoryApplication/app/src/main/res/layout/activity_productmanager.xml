@@ -17,13 +17,13 @@
         android:paddingTop="50dp"
         android:paddingRight="5dp"
         android:text="MANAGER"
-        android:textColor="@color/BlueDarkGray"
-        android:textSize="45dp"
+        android:textColor="@color/BlueGray"
+        android:textSize="50dp"
         android:textStyle="bold" />
 
     <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="43dp">
 
@@ -31,7 +31,7 @@
             android:id="@+id/btn_inventory"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/btn_shape1"
+            android:background="@drawable/btn_manager_shape"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         <TableLayout
@@ -61,7 +61,21 @@
                     android:layout_marginLeft="20dp"
                     android:gravity="center"
                     android:text="INVENTORY"
+                    android:textColor="@color/BlueGrayLight"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/inventory_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="#0017EF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:translationZ="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_inventory"
+                    app:layout_constraintTop_toTopOf="parent" />
             </TableRow>
 
         </TableLayout>
@@ -70,15 +84,15 @@
 
     <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_marginTop="17dp">
+        android:layout_marginTop="10dp">
 
         <ImageButton
             android:id="@+id/btn_in"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/btn_shape1"
+            android:background="@drawable/btn_manager_shape"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TableLayout
@@ -96,7 +110,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/admin" />
+                    app:srcCompat="@drawable/resource_import" />
 
                 <TextView
                     android:id="@+id/txt_in"
@@ -105,7 +119,8 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:gravity="center"
-                    android:text="IN"
+                    android:textColor="@color/BlueGrayLight"
+                    android:text="IMPORT"
                     android:textSize="20sp" />
             </TableRow>
 
@@ -115,15 +130,15 @@
 
     <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_marginTop="17dp">
+        android:layout_marginTop="10dp">
 
         <ImageButton
             android:id="@+id/btn_out"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/btn_shape1"
+            android:background="@drawable/btn_manager_shape"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TableLayout
@@ -141,7 +156,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/admin" />
+                    app:srcCompat="@drawable/delivery" />
 
                 <TextView
                     android:id="@+id/txt_out"
@@ -150,7 +165,8 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:gravity="center"
-                    android:text="OUT"
+                    android:text="DELIVERY"
+                    android:textColor="@color/BlueGrayLight"
                     android:textSize="20sp" />
             </TableRow>
 
@@ -160,15 +176,15 @@
 
     <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_marginTop="17dp">
+        android:layout_marginTop="10dp">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btn_setting"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/btn_shape1"
+            android:background="@drawable/btn_manager_shape"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TableLayout
@@ -186,7 +202,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/admin" />
+                    app:srcCompat="@drawable/stocktaking" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -196,6 +212,7 @@
                     android:layout_marginLeft="20dp"
                     android:gravity="center"
                     android:text="CHECK"
+                    android:textColor="@color/BlueGrayLight"
                     android:textSize="20sp" />
             </TableRow>
 
@@ -204,7 +221,7 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/btn_back_menu"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="30dp"

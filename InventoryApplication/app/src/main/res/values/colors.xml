@@ -121,4 +121,8 @@
     <color name="value_color">#1a58af</color>
     <color name="caption_color">#2d9bd5</color>
     <color name="palegoldenrod">#eee8aa</color>
+    <color name="BlueDarkGray">#193540</color>
+    <color name="BlueGray">#24435c</color>
+    <color name="BlueGrayLight">#d8f3ff</color>
+    <color name="BlueLight">#b1e8ff</color>
 </resources>

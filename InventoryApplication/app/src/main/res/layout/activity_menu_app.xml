@@ -58,7 +58,7 @@
             android:layout_height="@dimen/size14dp"
             android:background="@color/colorWhiteLight" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_open_setting_scanner"
+            android:id="@+id/btn_setting"
             android:layout_width="match_parent"
             android:layout_height="85sp"
             android:layout_marginStart="@dimen/size20dp"
@@ -82,7 +82,7 @@
             android:background="@color/colorWhiteLight" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_logout"
+            android:id="@+id/btn_back_menu"
             android:layout_width="match_parent"
             android:layout_height="85sp"
             android:layout_marginStart="@dimen/size20dp"

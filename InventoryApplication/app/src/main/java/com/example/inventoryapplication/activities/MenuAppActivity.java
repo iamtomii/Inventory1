@@ -2,43 +2,30 @@ package com.example.inventoryapplication.activities;
 
 import static com.example.inventoryapplication.activities.SettingMacActivity.PREFS_NAME;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.inventoryapplication.R;
 import com.example.inventoryapplication.common.constants.Constants;
 
-import java.util.Collection;
-
 public class MenuAppActivity extends AppCompatActivity implements View.OnClickListener{
-    Button btn_logout, btn_open_product_manage,btn_open_setting_scanner;
-
+    ImageButton btn_open_product_manage,btn_open_setting_scanner;
+    ImageView btn_logout;
     int flag =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_app);
+        setContentView(R.layout.activity_menu_app1);
 
         initViews();
     }
@@ -77,9 +64,9 @@ public class MenuAppActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initViews(){
-        btn_logout = (Button) findViewById(R.id.btn_logout);
-        btn_open_product_manage = (Button) findViewById(R.id.btn_open_product_manage);
-        btn_open_setting_scanner = (Button) findViewById(R.id.btn_open_setting_scanner);
+        btn_logout = (ImageView) findViewById(R.id.btn_back_menu);
+        btn_open_product_manage = (ImageButton) findViewById(R.id.btn_open_product_manage);
+        btn_open_setting_scanner = (ImageButton) findViewById(R.id.btn_setting);
 
         btn_logout.setOnClickListener(this);
         btn_open_product_manage.setOnClickListener(this);
@@ -111,14 +98,14 @@ public class MenuAppActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_logout:
+            case R.id.btn_back_menu:
                 startActivity(new Intent(MenuAppActivity.this,LoginActivity.class));
                 break;
             case R.id.btn_open_product_manage:
                 Intent intent = new Intent(MenuAppActivity.this, MenuBussinessActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btn_open_setting_scanner:
+            case R.id.btn_setting:
                 startActivity(new Intent(MenuAppActivity.this, SettingMacActivity.class));
                 break;
         }

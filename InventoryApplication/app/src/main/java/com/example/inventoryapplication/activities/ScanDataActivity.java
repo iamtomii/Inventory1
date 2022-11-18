@@ -22,6 +22,7 @@ import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -29,6 +30,7 @@ import android.view.WindowManager;
 import android.view.WindowMetrics;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -72,7 +74,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private int IS_SHOW_DIALOG_LIMIT = 0;
     private TextView total_quantity, total_money,total_error;
     private EditText edt_receive_barcode_wireless; // #ADD_BARCODE
-    private LinearLayout btnBack, btnSearch, btnDelete_all, btnDelete, btnSave, btnMode;
+    private ImageView btnBack, btnSearch, btnDelete_all, btnDelete, btnSave, btnMode;
     // #ADD_BARCODE
     private int flagCustom = 0;
     private int scan_size;
@@ -94,7 +96,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan_data);
+        setContentView(R.layout.activity_nav);
 
         db = new SQLiteDatabaseHandler(this);
 
@@ -324,18 +326,18 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         arrDataInList = new LinkedList<>();
         lvProduct = (ListView) findViewById(R.id.list_scan);
 
-        btnBack = (LinearLayout) findViewById(R.id.btn_back);
-        btnSearch = (LinearLayout) findViewById(R.id.btn_search);
-        btnDelete = (LinearLayout) findViewById(R.id.btn_delete);
-        btnSave = (LinearLayout) findViewById(R.id.btn_save_data);
-        btnDelete_all = (LinearLayout) findViewById(R.id.btn_delete_all);
+        btnBack = (ImageView) findViewById(R.id.btn_back);
+        //btnSearch = (ImageView) findViewById(R.id.btn_search);
+        //btnDelete = (LinearLayout) findViewById(R.id.btn_delete);
+        btnSave = (ImageView) findViewById(R.id.btn_save_data);
+        btnDelete_all = (ImageView) findViewById(R.id.btn_delete_all);
         //btnMode = (LinearLayout) findViewById(R.id.btn_mode);
         // #ADD_ERROR
         btn_error = (Button) findViewById(R.id.btn_error);
 
         btnBack.setOnClickListener(this);
-        btnSearch.setOnClickListener(this);
-        btnDelete.setOnClickListener(this);
+        //btnSearch.setOnClickListener(this);
+        //btnDelete.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         btnDelete_all.setOnClickListener(this);
         //btnMode.setOnClickListener(this);
@@ -399,10 +401,10 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_back:
                 eventClickBack();
                 break;
-            case R.id.btn_search:
-                eventCLickSearch();
+            //case R.id.btn_search:
+                //eventCLickSearch();
                 //initDataCustom();
-                break;
+                //break;
             case R.id.btn_delete_all:
                 eventClickDeleteAll();
                 //initOneDataCustom();
@@ -411,10 +413,10 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 eventClickExport();
                 //eventManualInput();
                 break;
-            case R.id.btn_delete:
+            //case R.id.btn_delete:
                 //initDataCustom();
-                eventClickDelete();
-                break;
+                //eventClickDelete();
+                //break;
             case R.id.btn_error:
                 showDialog();
                 break;
@@ -456,6 +458,59 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Function click back
      */
+    public void DisplayAlertDialog(){
+        LayoutInflater inflater=getLayoutInflater();
+        View alertLayout=inflater.inflate(R.layout.dialog_1,null);
+        final TextView txt_dialog=(TextView) alertLayout.findViewById(R.id.txt_dialog);
+        final TextView txt_dialog_cont=(TextView) alertLayout.findViewById(R.id.txt_dialog_cont);
+        final Button btn_yes=(Button) alertLayout.findViewById(R.id.btn_yes);
+        final Button btn_no=(Button) alertLayout.findViewById(R.id.btn_no);
+
+        //Show message confirm
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
+        txt_dialog.setText("EXPORT DATA");
+        txt_dialog_cont.setText("DO YOU WANT EXPORT DATA?");
+        alertDialog.setCancelable(false);
+        btn_yes.setOnClickListener(this);
+        btn_no.setOnClickListener(this);
+        btn_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.insertAllProducts(arrDataInList);
+                actionDeleteAll();
+                if(!db.getAllProducts().isEmpty()){
+                    showProgressRunUi();
+                    ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
+                        @Override
+                        public void call(boolean result) {
+                            if(result){
+                                showToast("Exporting Success!!!");
+                                dismissProgress();
+                                showDialogMessageExport();
+                            }
+                        }
+                    });
+
+                }
+                else showToast("No data to export!!!");
+            }
+        });
+        // Configure alert dialog button
+        btn_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        AlertDialog alert = alertDialog.show();
+        eventDisableButton();
+        //eventOpenButton(false);
+        TextView messageText = (TextView) alert.findViewById(android.R.id.message);
+        assert messageText != null;
+        messageText.setGravity(Gravity.CENTER);
+
+    }
     private void eventClickBack() {
         if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
@@ -618,7 +673,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         //Show message confirm
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
         alertDialog.setMessage(Message.MESSAGE_CONFIRM_EXPORT_DATA);
-
         alertDialog.setCancelable(false);
 
         // Configure alert dialog button
@@ -1034,9 +1088,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
     private void eventDisableButton() {
 
-        btnSearch.setClickable(false);
+        //btnSearch.setClickable(false);
         btnBack.setClickable(false);
-        btnDelete.setClickable(false);
+        //btnDelete.setClickable(false);
         btnDelete_all.setClickable(false);
         btnSave.setClickable(false);
         // #ADD_ERROR
@@ -1047,9 +1101,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
     private void eventEnableButton() {
 
-        btnSearch.setClickable(true);
+        //btnSearch.setClickable(true);
         btnBack.setClickable(true);
-        btnDelete.setClickable(true);
+        //btnDelete.setClickable(true);
         btnDelete_all.setClickable(true);
         btnSave.setClickable(true);
         // #ADD_ERROR

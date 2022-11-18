@@ -17,11 +17,12 @@
         android:paddingRight="5dp"
         android:text="SMART ACTIVE"
         android:textColor="@color/BlueDarkGray"
-        android:textSize="45dp"
-        android:textStyle="bold" />
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:shadowColor="@color/BlueGray"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edt_userid"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -35,7 +36,8 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:shadowColor="@color/BlueGray"
+        android:id="@+id/edt_password"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -43,9 +45,9 @@
         android:background="@drawable/edittext_shape"
         android:ems="10"
         android:fontFamily="@font/cairo"
-        android:inputType="textPersonName"
         android:padding="5dp"
         android:text="PASSWORD"
+        android:inputType="textPassword"
         android:textSize="15sp" />
 
     <Switch
@@ -55,35 +57,26 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:fontFamily="@font/public_sans_thin"
+        android:textColor="@color/BlueGray"
         android:layoutDirection="rtl"
         android:minHeight="48dp"
-        android:text="Remember Login" />
+        android:text="Remember Login"
+        android:trackTint="@color/BlueGray"
+        android:thumbTint="@color/BlueGray"/>
 
-    <FrameLayout
+    <android.widget.Button
+        android:id="@+id/btn_login"
+        android:layout_gravity="center"
         android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center">
-
-        <ImageButton
-            android:id="@+id/button"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-
-            android:background="@drawable/btn_shape1"
-            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/cairo_bold"
-            android:text="SIGN IN"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/BlueDarkGray"/>
-
-    </FrameLayout>
+        android:layout_height="@dimen/size50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_shape_bluelight"
+        android:text="LOGIN"
+        android:textColor="@color/BlueDarkGray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
 
     <TableLayout
         android:layout_width="wrap_content"
@@ -100,13 +93,17 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No account yet?" />
+                android:text="No account yet?"
+                android:fontFamily="@font/cairo"
+                android:textColor="@color/BlueGray"/>
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create one" />
+                android:text="Create one"
+                android:fontFamily="@font/cairo"
+                android:textColor="@color/BlueGray"/>
         </TableRow>
 
         <TableRow
@@ -119,6 +116,8 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo"
+                android:textColor="@color/BlueGray"
                 android:text="Forgot password" />
         </TableRow>
 
@@ -133,7 +132,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Privacy policy" />
+                android:fontFamily="@font/cairo"
+                android:text="Privacy policy"
+                android:textColor="@color/BlueGray"/>
         </TableRow>
 
     </TableLayout>
@@ -141,7 +142,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="10sp"
         android:shrinkColumns="*"
         android:stretchColumns="*">
@@ -161,7 +162,8 @@
                 android:gravity="center"
                 android:text="@string/device_id"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/cairo_extralight"
+                android:textColor="@color/BlueGray" />
         </TableRow>
 
         <TableRow
@@ -172,11 +174,11 @@
                 android:id="@+id/txv_app_version"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-
+                android:fontFamily="@font/cairo_extralight"
                 android:layout_marginBottom="@dimen/size10dp"
                 android:text="@string/app_version"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/BlueGray" />
 
             <TextView
                 android:id="@+id/txv_db_version"
@@ -185,7 +187,8 @@
                 android:layout_marginBottom="@dimen/size10dp"
                 android:text="@string/database_version"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/cairo_extralight"
+                android:textColor="@color/BlueGray" />
 
         </TableRow>
 

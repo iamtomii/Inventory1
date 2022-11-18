@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.inventoryapplication.R;
@@ -22,7 +20,7 @@ public class SettingMacActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting_mac);
+        setContentView(R.layout.activity_setting_1);
 
         initViews();
 
@@ -33,8 +31,8 @@ public class SettingMacActivity extends AppCompatActivity implements View.OnClic
         edt_ip = (EditText) findViewById(R.id.edt_ip);
         edt_port = (EditText) findViewById(R.id.edt_port);
         edt_power_level = (EditText) findViewById(R.id.edt_power_level);
-        btn_save = (Button) findViewById(R.id.btn_save);
-        btn_cancel = (Button) findViewById(R.id.btn_cancel);
+        btn_save = (Button) findViewById(R.id.btn_yes);
+        btn_cancel = (Button) findViewById(R.id.btn_no);
 
 
         btn_save.setOnClickListener(this);
@@ -54,7 +52,7 @@ public class SettingMacActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_save:
+            case R.id.btn_yes:
                 String mac = edt_mac.getText().toString();
                 String ip = edt_ip.getText().toString();
                 String port = edt_port.getText().toString();
@@ -98,7 +96,7 @@ public class SettingMacActivity extends AppCompatActivity implements View.OnClic
 
                 finish();
                 break;
-            case R.id.btn_cancel:
+            case R.id.btn_no:
                 finish();
                 break;
         }
