@@ -2,7 +2,7 @@
 
 <!--Background BOOKS_RETURNS, MAGAZINE_RETURNS, MEDIA_RETURNS-->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:right="1dp">
+    <item android:top="-2dp" android:right="-2dp" android:left="-2dp">
         <shape android:shape="rectangle">
             <size
                 android:height="76dp"/>

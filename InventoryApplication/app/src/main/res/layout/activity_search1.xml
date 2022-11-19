@@ -16,9 +16,9 @@
             android:id="@+id/btn_error"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="-130dp"
+            android:layout_marginTop="-70dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="300dp"
+            android:layout_marginBottom="150dp"
             android:background="@drawable/button_circle_custom"
             android:text="Error"
             android:textColor="@color/white"
@@ -49,8 +49,8 @@
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:layout_margin="15dp"
+                    android:layout_weight="1"
                     app:navigationIcon="@drawable/nav_img_shape" />
 
                 <SearchView
@@ -95,9 +95,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape_title_3"
                     android:gravity="center"
-                    android:text="Num"
-                    android:background="@drawable/cell_shape_title_3"/>
+                    android:text="Num" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -105,9 +105,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="2"
+                    android:background="@drawable/cell_shape_title_3"
                     android:gravity="center"
-                    android:text="Name"
-                    android:background="@drawable/cell_shape_title_3"/>
+                    android:text="Name" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -115,9 +115,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="2"
+                    android:background="@drawable/cell_shape_title_3"
                     android:gravity="center"
-                    android:text="Barcode"
-                    android:background="@drawable/cell_shape_title_3"/>
+                    android:text="Barcode" />
 
                 <TextView
                     android:id="@+id/textView16"
@@ -125,9 +125,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape_title_3"
                     android:gravity="center"
-                    android:text="Quantity"
-                    android:background="@drawable/cell_shape_title_3"/>
+                    android:text="Quantity" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,6 +169,7 @@
                     android:text="amount:"
                     android:textColor="@color/BlueGrayLight"
                     android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/total_error"
                     android:layout_width="0dp"
@@ -183,36 +184,13 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/btn_delete_all"
-            android:layout_width="49dp"
-            android:layout_height="55dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toTopOf="@+id/guideline8"
-            app:srcCompat="@drawable/eraser" />
-
-        <ImageView
-            android:id="@+id/btn_save_data"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="90dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toEndOf="@+id/btn_delete_all"
-            app:layout_constraintTop_toTopOf="@+id/guideline8"
-            app:srcCompat="@drawable/export" />
-
-        <ImageView
             android:id="@+id/btn_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
-            app:layout_constraintStart_toEndOf="@+id/btn_save_data"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="@+id/guideline8"
             app:srcCompat="@drawable/reply" />
 
@@ -240,6 +218,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_end="144dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="238dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView

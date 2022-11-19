@@ -2,9 +2,16 @@ package com.example.inventoryapplication.activities;
 
 import static com.example.inventoryapplication.activities.SettingMacActivity.MAC_HANDWARE;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
@@ -19,10 +26,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.SyncStateContract;
+import android.support.v4.os.IResultReceiver;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -45,10 +54,12 @@ import com.example.inventoryapplication.common.entities.InforProductEntity;
 import com.example.inventoryapplication.common.function.ExcelExporter;
 import com.example.inventoryapplication.common.function.SupModRfidCommon;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
+import com.example.inventoryapplication.fragment.DialogYesNoFragment;
 import com.example.inventoryapplication.interfaces.Callable;
 import com.example.inventoryapplication.thread.ConnectThread;
 import com.example.inventoryapplication.thread.HttpPostRfid;
 import com.example.inventoryapplication.thread.HttpRfidResponse;
+import com.google.android.material.navigation.NavigationView;
 
 
 import org.json.JSONArray;
@@ -88,6 +99,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private InforProductEntity inforProductEntity;
     private boolean isKeepScanMagazine = false;
     private ListView lvProduct;
+    private Toolbar nav_icon;
+    private DrawerLayout drawer_layout;
+    private NavigationView nav_views;
     // #HUYNHQUANGVINH list rfid not found
     Set<String> setRfidNotFound = new HashSet<>();
     SQLiteDatabaseHandler db;
@@ -327,25 +341,74 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         lvProduct = (ListView) findViewById(R.id.list_scan);
 
         btnBack = (ImageView) findViewById(R.id.btn_back);
-        //btnSearch = (ImageView) findViewById(R.id.btn_search);
+        //btnsearch = (Button) findViewById(R.id.btn_search);
         //btnDelete = (LinearLayout) findViewById(R.id.btn_delete);
         btnSave = (ImageView) findViewById(R.id.btn_save_data);
         btnDelete_all = (ImageView) findViewById(R.id.btn_delete_all);
         //btnMode = (LinearLayout) findViewById(R.id.btn_mode);
         // #ADD_ERROR
         btn_error = (Button) findViewById(R.id.btn_error);
-
+        //#Navigation
+        nav_icon=(Toolbar) findViewById((R.id.nav_icon));
+        drawer_layout=(DrawerLayout) findViewById((R.id.drawer_layout));
+        nav_views=(NavigationView) findViewById(R.id.nav_views);
         btnBack.setOnClickListener(this);
-        //btnSearch.setOnClickListener(this);
+        //btnsearch.setOnClickListener(this);
         //btnDelete.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         btnDelete_all.setOnClickListener(this);
         //btnMode.setOnClickListener(this);
         // #ADD_ERROR
         btn_error.setOnClickListener(this);
+        //# navigation
+        nav_icon.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer_layout.openDrawer(GravityCompat.START);
+            }
+        });
+        View headerView = nav_views.getHeaderView(0);
+        ImageView nav_back=(ImageView) headerView.findViewById(R.id.nav_back);
+        nav_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer_layout.closeDrawer(GravityCompat.START);
+                eventClickBack();
+                }
+        });
+
+        nav_views.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id=item.getItemId();
+                drawer_layout.closeDrawer(GravityCompat.START);
+                switch (id)
+                {
+                    case R.id.nav_account:
+                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                    case R.id.nav_menu_app:
+                        eventClickItemMenuApp();
+                    case R.id.nav_manager:
+                        drawer_layout.closeDrawer((GravityCompat.START));
+                        eventClickBack();
+                    case R.id.nav_setting:
+                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                    case R.id.nav_themes:
+                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                    case R.id.nav_logout:
+                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                    default:
+                        return true;
+                }
+                return true;
+            }
+        });
+
+
         reloadSQLiteData();
 
     }
+
 
     private void reloadSQLiteData(){
         setCustomOutput.clear();
@@ -372,14 +435,14 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-   /* private void eventDisconnectDevice(){
-        close(new CallbackListener() {
-            @Override
-            public void callback(boolean success, String msg) {
-                showToast("DISCONNECTED!!!");
-            }
-        });
-    }*/
+    /* private void eventDisconnectDevice(){
+         close(new CallbackListener() {
+             @Override
+             public void callback(boolean success, String msg) {
+                 showToast("DISCONNECTED!!!");
+             }
+         });
+     }*/
     @Override
     public void onDestroy() {
         connectThread.cancel();
@@ -389,7 +452,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
-
+//2002000005526
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
         return arrDataInList;
@@ -404,7 +467,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             //case R.id.btn_search:
                 //eventCLickSearch();
                 //initDataCustom();
-                //break;
+               // break;
             case R.id.btn_delete_all:
                 eventClickDeleteAll();
                 //initOneDataCustom();
@@ -414,9 +477,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 //eventManualInput();
                 break;
             //case R.id.btn_delete:
-                //initDataCustom();
-                //eventClickDelete();
-                //break;
+            //initDataCustom();
+            //eventClickDelete();
+            //break;
             case R.id.btn_error:
                 showDialog();
                 break;
@@ -453,64 +516,47 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         restartListView();
 
     }
+    private void eventClickItemMenuApp() {
+        if (arrDataInList.size() > 0) {
+            isKeepScanMagazine = checkOldBarcode();
+        } else {
+            isKeepScanMagazine = false;
+        }
 
+        if (arrDataInList.size() > 0) {
+            // Stop scan honeywell
+
+            // Disable event onClick
+            eventDisableButton();
+            //eventOpenButton(false);
+
+            showDialogConfirmBack();
+        } else {
+
+            startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
+        }
+
+    }
+    private void showDialogConfirmMenuBack(){
+        DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "CONFIRM GO TO MENU", Message.MESSAGE_CONFIRM_REGISTER_DATA, new Callable() {
+            @Override
+            public void call(boolean result) {
+                if(result==true){
+                    db.insertAllProducts(arrDataInList);
+                    //eventDisconnectDevice();
+                    startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
+                }else{
+                    startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
+                }
+            }
+        });
+        loadFragment(dialogYesNoFragment);
+    }
 
     /**
      * Function click back
      */
-    public void DisplayAlertDialog(){
-        LayoutInflater inflater=getLayoutInflater();
-        View alertLayout=inflater.inflate(R.layout.dialog_1,null);
-        final TextView txt_dialog=(TextView) alertLayout.findViewById(R.id.txt_dialog);
-        final TextView txt_dialog_cont=(TextView) alertLayout.findViewById(R.id.txt_dialog_cont);
-        final Button btn_yes=(Button) alertLayout.findViewById(R.id.btn_yes);
-        final Button btn_no=(Button) alertLayout.findViewById(R.id.btn_no);
 
-        //Show message confirm
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
-        txt_dialog.setText("EXPORT DATA");
-        txt_dialog_cont.setText("DO YOU WANT EXPORT DATA?");
-        alertDialog.setCancelable(false);
-        btn_yes.setOnClickListener(this);
-        btn_no.setOnClickListener(this);
-        btn_yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                db.insertAllProducts(arrDataInList);
-                actionDeleteAll();
-                if(!db.getAllProducts().isEmpty()){
-                    showProgressRunUi();
-                    ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
-                        @Override
-                        public void call(boolean result) {
-                            if(result){
-                                showToast("Exporting Success!!!");
-                                dismissProgress();
-                                showDialogMessageExport();
-                            }
-                        }
-                    });
-
-                }
-                else showToast("No data to export!!!");
-            }
-        });
-        // Configure alert dialog button
-        btn_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        AlertDialog alert = alertDialog.show();
-        eventDisableButton();
-        //eventOpenButton(false);
-        TextView messageText = (TextView) alert.findViewById(android.R.id.message);
-        assert messageText != null;
-        messageText.setGravity(Gravity.CENTER);
-
-    }
     private void eventClickBack() {
         if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
@@ -525,13 +571,32 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             eventDisableButton();
             //eventOpenButton(false);
 
-            showDialogMessageConfirmBack();
+            showDialogConfirmBack();
         } else {
 
             onBackPressed();
         }
 
     }
+    /**
+     * Function show dialog confirm back
+     */
+    private void showDialogConfirmBack(){
+        DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "CONFIRM BACK", Message.MESSAGE_CONFIRM_REGISTER_DATA, new Callable() {
+            @Override
+            public void call(boolean result) {
+                if(result==true){
+                    db.insertAllProducts(arrDataInList);
+                    //eventDisconnectDevice();
+                    onBackPressed();
+                }else{
+                    onBackPressed();
+                }
+            }
+        });
+        loadFragment(dialogYesNoFragment);
+    }
+
 
     /**
      * Function show dialog confirm back
@@ -585,44 +650,8 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             messageText.setGravity(Gravity.CENTER);
         }
     }
-    /**
-     * Function show dialog confirm back
-     */
-    private void showDialogMessageConfirmBack() {
 
-        //Show message confirm
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
-        alertDialog.setMessage(Message.MESSAGE_CONFIRM_REGISTER_DATA);
 
-        alertDialog.setCancelable(false);
-
-        // Configure alert dialog button
-        alertDialog.setPositiveButton(Message.YES_REGISTER_DATA, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Save list view to database
-                db.insertAllProducts(arrDataInList);
-                //eventDisconnectDevice();
-                onBackPressed();
-
-            }
-        });
-        alertDialog.setNegativeButton(Message.NOT_REGISTER_DATA, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                //eventDisconnectDevice();
-                onBackPressed();
-            }
-        });
-
-        AlertDialog alert = alertDialog.show();
-        eventDisableButton();
-        //eventOpenButton(false);
-        TextView messageText = (TextView) alert.findViewById(android.R.id.message);
-        assert messageText != null;
-        messageText.setGravity(Gravity.CENTER);
-
-    }
     /**
      * Function show dialog confirm search
      */
@@ -668,54 +697,56 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Function show dialog confirm back
      */
-    private void showDialogMessageConfirmExport() {
+    //private void showDialogMessageConfirmExport() {
 
-        //Show message confirm
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
-        alertDialog.setMessage(Message.MESSAGE_CONFIRM_EXPORT_DATA);
-        alertDialog.setCancelable(false);
+    //Show message confirm
+    //  AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
+    //alertDialog.setTitle("EXPORT");
+    //alertDialog.setMessage(Message.MESSAGE_CONFIRM_EXPORT_DATA);
+    //alertDialog.setCancelable(false);
 
-        // Configure alert dialog button
-        alertDialog.setPositiveButton(Message.YES_REGISTER_DATA, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Save list view to database
+    // Configure alert dialog button
+    //alertDialog.setPositiveButton(Message.YES_REGISTER_DATA, new DialogInterface.OnClickListener() {
+    //@Override
+    //public void onClick(DialogInterface dialog, int which) {
+    // Save list view to database
 
-                db.insertAllProducts(arrDataInList);
-                actionDeleteAll();
-                if(!db.getAllProducts().isEmpty()){
-                    showProgressRunUi();
-                    ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
-                        @Override
-                        public void call(boolean result) {
-                            if(result){
-                                showToast("Exporting Success!!!");
-                                dismissProgress();
-                                showDialogMessageExport();
-                            }
-                        }
-                    });
+    //db.insertAllProducts(arrDataInList);
+    //actionDeleteAll();
+    //if(!db.getAllProducts().isEmpty()){
+    //showProgressRunUi();
+    //ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
+    //@Override
+    //public void call(boolean result) {
+    //if(result){
+    //showToast("Exporting Success!!!");
+    //dismissProgress();
+    //showDialogMessageExport();
+    //}
+    //}
+    //});
 
-                }
-                else showToast("No data to export!!!");
+    //}
+    //else showToast("No data to export!!!");
 
-            }
-        });
-        alertDialog.setNegativeButton(Message.NOT_REGISTER_DATA, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                //onBackPressed();
-            }
-        });
+    //}
+    //});
+    //alertDialog.setNegativeButton(Message.NOT_REGISTER_DATA, new DialogInterface.OnClickListener() {
+    //@Override
+    // public void onClick(DialogInterface dialog, int i) {
+    //onBackPressed();
+    //   eventEnableButton();
+    // }
+    //   });
 
-        AlertDialog alert = alertDialog.show();
-        eventDisableButton();
-        //eventOpenButton(false);
-        TextView messageText = (TextView) alert.findViewById(android.R.id.message);
-        assert messageText != null;
-        messageText.setGravity(Gravity.CENTER);
+    //  AlertDialog alert = alertDialog.show();
+    //  eventDisableButton();
+    //  //eventOpenButton(false);
+    // TextView messageText = (TextView) alert.findViewById(android.R.id.message);
+    // assert messageText != null;
+    // messageText.setGravity(Gravity.CENTER);
 
-    }
+    // }
     private void showProgressRunUi(){
         runOnUiThread(new Runnable() {
             @Override
@@ -727,38 +758,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Function show dialog confirm back
      */
-    private void showDialogMessageExport() {
 
-        //Show message confirm
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
-        alertDialog.setMessage(Message.MESSAGE_CONFIRM_REMOVE_ADD_DATA);
-
-        alertDialog.setCancelable(false);
-
-        // Configure alert dialog button
-        alertDialog.setPositiveButton(Message.YES_REGISTER_DATA, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Save list view to database
-                db.deleteAllProducts();
-                onBackPressed();
-            }
-        });
-        alertDialog.setNegativeButton(Message.NOT_REGISTER_DATA, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                onBackPressed();
-            }
-        });
-
-        AlertDialog alert = alertDialog.show();
-        eventDisableButton();
-        //eventOpenButton(false);
-        TextView messageText = (TextView) alert.findViewById(android.R.id.message);
-        assert messageText != null;
-        messageText.setGravity(Gravity.CENTER);
-
-    }
 
     /**
      * Function click button search
@@ -769,11 +769,103 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         else startActivity(new Intent(ScanDataActivity.this,SearchActivity.class));
     }
     /**
-     * Function click button search
+     * Function click Export
      */
     private void eventClickExport() {
-       showDialogMessageConfirmExport();
+        //showDialogMessageConfirmExport();
+        DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "EXPORT", Message.MESSAGE_CONFIRM_EXPORT_DATA, new Callable() {
+            @Override
+            public void call(boolean result) {
+                if(result==true){
+                    eventExportYes();
+                }else{
+                    dismissProgress();
+                }
+            }
+        });
+        loadFragment(dialogYesNoFragment);
+    }
+    private void showDialogMessageExportYes(){
+        DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "EXPORT", Message.MESSAGE_CONFIRM_REMOVE_ADD_DATA, new Callable() {
+            @Override
+            public void call(boolean result) {
+                if(result==true){
+                    db.deleteAllProducts();
+                    onBackPressed();
+                }else{
+                    dismissProgress();
+                }
+            }
+        });
+        loadFragment(dialogYesNoFragment);
+    }
+    //private void showDialogMessageExport() {
 
+    //Show message confirm
+    //AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
+    //alertDialog.setMessage(Message.MESSAGE_CONFIRM_REMOVE_ADD_DATA);
+
+    //alertDialog.setCancelable(false);
+
+    // Configure alert dialog button
+    // alertDialog.setPositiveButton(Message.YES_REGISTER_DATA, new DialogInterface.OnClickListener() {
+    //   @Override
+    //  public void onClick(DialogInterface dialog, int which) {
+    // Save list view to database
+    //    db.deleteAllProducts();
+    //   onBackPressed();
+    // }
+    // });
+    // alertDialog.setNegativeButton(Message.NOT_REGISTER_DATA, new DialogInterface.OnClickListener() {
+    //  @Override
+    //  public void onClick(DialogInterface dialog, int i) {
+    //      onBackPressed();
+    //   }
+    //  });
+
+    // AlertDialog alert = alertDialog.show();
+    //  eventDisableButton();
+    //eventOpenButton(false);
+    // TextView messageText = (TextView) alert.findViewById(android.R.id.message);
+    // assert messageText != null;
+    // messageText.setGravity(Gravity.CENTER);
+
+    // }
+    private void eventExportYes(){
+        db.insertAllProducts(arrDataInList);
+        if(!db.getAllProducts().isEmpty()){
+            showProgressRunUi();
+            ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
+                @Override
+                public void call(boolean result) {
+                    if(result){
+                        showToast("Exporting Success!!!");
+                        dismissProgress();
+                        showDialogMessageExportYes();
+                    }
+                }
+            });
+
+        }
+        else showToast("No data to export!!!");
+    }
+
+    /**
+     * loadfragment
+     */
+    private void loadFragment(Fragment fragment) {
+// create a FragmentManager
+        try {
+            System.out.println("loadFragment: ");
+            FragmentManager fm = getFragmentManager();
+// create a FragmentTransaction to begin the transaction and replace the Fragment
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+// replace the FrameLayout with new Fragment
+            fragmentTransaction.replace(R.id.linear_fragment, fragment);
+            fragmentTransaction.commit(); // save the changes
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -781,6 +873,25 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      * Function click delete all
      */
     private void eventClickDeleteAll() {
+        //showDialogMessageConfirmExport();
+        if (arrDataInList.size() > 0) {
+            DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "DELETE ALL", Message.MESSAGE_CONFIRM_DELETE_ALL, new Callable() {
+                @Override
+                public void call(boolean result) {
+                    if(result==true){
+                        actionDeleteAll();
+                        showToast("Exporting Success!!!");
+                    }else{
+                        dismissProgress();
+                    }
+                }
+            });
+            loadFragment(dialogYesNoFragment);
+        } else {
+            showToast("No any record to delete!!!");
+        }
+    }
+    private void eventDeleteAll() {
 
         if (arrDataInList.size() > 0) {
             //Show message confirm
@@ -912,9 +1023,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
-   /* private void digestBarcode(String bar_code, int first3character, int money) {
+    /* private void digestBarcode(String bar_code, int first3character, int money) {
 
-        *//*switch (first3character) {
+     *//*switch (first3character) {
             case Constants.CD1_978:
                 inforProductEntity.setBarcodeCD1(bar_code);
                 inforProductEntity.setBarcodeCD2(Constants.BLANK);
@@ -1095,6 +1206,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         btnSave.setClickable(false);
         // #ADD_ERROR
         btn_error.setClickable(true);
+
     }
     /**
      * Enable onclick action
@@ -1108,6 +1220,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         btnSave.setClickable(true);
         // #ADD_ERROR
         btn_error.setClickable(true);
+
     }
 
     /**

@@ -4,5 +4,7 @@
         <item>@font/cairo_light</item>
         <item>@font/public_sans_thin</item>
         <item>@font/roboto</item>
+        <item>@font/source_sans_pro</item>
+        <item>@font/source_sans_pro_semibold</item>
     </array>
 </resources>

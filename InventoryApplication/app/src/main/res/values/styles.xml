@@ -36,5 +36,16 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">20sp</item>
     </style>
+    //dialog
+    <style name="RoundedCornersDialog" parent="@style/Theme.MaterialComponents.Dialog">
+        <item name="dialogCornerRadius">16dp</item>
+    </style>
+    <style name="MaterialAlertDialog_rounded" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/DialogCorners</item>
+    </style>
 
+    <style name="DialogCorners">
+        <item name="cornerSize">16dp</item>
+        <item name="dialogCornerRadius">16dp</item>
+    </style>
 </resources>
