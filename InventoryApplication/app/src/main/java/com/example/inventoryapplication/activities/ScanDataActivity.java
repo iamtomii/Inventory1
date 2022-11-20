@@ -1,13 +1,11 @@
 package com.example.inventoryapplication.activities;
 
-import static com.example.inventoryapplication.activities.SettingMacActivity.MAC_HANDWARE;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
+
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -20,17 +18,13 @@ import android.graphics.Insets;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.SyncStateContract;
-import android.support.v4.os.IResultReceiver;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +34,6 @@ import android.view.WindowMetrics;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -309,20 +302,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
                 // Get size of data scan in list view
                 scan_size = arrDataInList.size();
-                searchView=(SearchView) findViewById(R.id.searchView);
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        adapterBook.getFilter().filter(query);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        adapterBook.getFilter().filter(newText);
-                        return false;
-                    }
-                });
             }
         });
 
@@ -419,7 +398,24 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 return true;
             }
         });
+        ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataActivity.this,
+                arrDataInList);
+        lvProduct.setAdapter(adapterBook);
+        searchView=(SearchView) findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                System.out.println(query);
+                adapterBook.getFilter().filter(query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapterBook.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         reloadSQLiteData();
 
