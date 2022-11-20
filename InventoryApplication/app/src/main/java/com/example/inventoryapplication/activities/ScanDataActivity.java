@@ -43,6 +43,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +103,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private Toolbar nav_icon;
     private DrawerLayout drawer_layout;
     private NavigationView nav_views;
+    private SearchView searchView;
     // #HUYNHQUANGVINH list rfid not found
     Set<String> setRfidNotFound = new HashSet<>();
     SQLiteDatabaseHandler db;
@@ -307,6 +309,20 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
                 // Get size of data scan in list view
                 scan_size = arrDataInList.size();
+                searchView=(SearchView) findViewById(R.id.searchView);
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        adapterBook.getFilter().filter(query);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        adapterBook.getFilter().filter(newText);
+                        return false;
+                    }
+                });
             }
         });
 

@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.example.inventoryapplication.R;
 import com.example.inventoryapplication.common.constants.Constants;
 import com.example.inventoryapplication.common.entities.InforProductEntity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -24,9 +27,10 @@ import java.util.LinkedList;
  * @author Tai-LQ
  * @since 2019/06/10
  */
-public class ListViewScanAdapter extends BaseAdapter {
+public class ListViewScanAdapter extends BaseAdapter implements Filterable {
 
     private LinkedList<InforProductEntity> list;
+    private LinkedList<InforProductEntity> listOld;
     private Activity activity;
     private int sizeList;
 
@@ -36,7 +40,10 @@ public class ListViewScanAdapter extends BaseAdapter {
         this.activity = activity;
         this.list = list;
         this.sizeList = list.size();
+        this.listOld=list;
     }
+
+
 
     /**
      * Init View Holder
@@ -94,7 +101,7 @@ public class ListViewScanAdapter extends BaseAdapter {
         LayoutInflater inflater = activity.getLayoutInflater();
         if (convertView == null) {
             // Init custom layout list scan
-            convertView = inflater.inflate(R.layout.adapter_list_scan1, null);
+            convertView = inflater.inflate(R.layout.adapter_list_scan, null);
             viewHolder = new ViewHolder();
 
             // Init column list view
@@ -124,10 +131,10 @@ public class ListViewScanAdapter extends BaseAdapter {
         if (position == 0) {
             // Set for first line in list view
             convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE));
-            viewHolder.lv_title_column1.setTextColor(Color.BLACK);
-            viewHolder.lv_title_column2.setTextColor(Color.BLACK);
-            viewHolder.lv_title_column3.setTextColor(Color.BLACK);
-            viewHolder.lv_title_column4.setTextColor(Color.BLACK);
+            viewHolder.lv_title_column1.setTextColor(Color.WHITE);
+            viewHolder.lv_title_column2.setTextColor(Color.WHITE);
+            viewHolder.lv_title_column3.setTextColor(Color.WHITE);
+            viewHolder.lv_title_column4.setTextColor(Color.WHITE);
         } else {
             // Set background from the second line in list view
             if (position % 2 == 0) {
@@ -156,6 +163,35 @@ public class ListViewScanAdapter extends BaseAdapter {
         }
         return convertView;
 
+    }
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String strSearch=constraint.toString();
+                if (strSearch.isEmpty()){
+                    list=listOld;
+                }else{
+                    LinkedList<InforProductEntity> listsearch= new LinkedList<>();
+                    for(InforProductEntity product : listOld){
+                        if(product.getGoodName().toLowerCase().contains(strSearch.toLowerCase())){
+                            listsearch.add(product);
+                        }
+                    }
+                    listOld = listsearch;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=list;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraints, FilterResults results) {
+                list=(LinkedList<InforProductEntity>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     @Override
