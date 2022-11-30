@@ -12,64 +12,104 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <android.widget.Button
-            android:id="@+id/btn_error"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="-70dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="150dp"
-            android:background="@drawable/button_circle_custom"
-            android:text="Error"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
-            android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/cell_shape_title_222"
+            android:gravity="top"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/BlueGray">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/size5dp">
+
+                    <TextView
+                        android:id="@+id/condition_name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size5dp"
+                        android:text="@string/barcode_product"
+                        android:textColor="@color/BlueGrayLight" />
+
+                    <EditText
+                        android:id="@+id/search_cd1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size50dp"
+                        android:background="@drawable/edittext_shape"
+                        android:ems="8"
+                        android:inputType="number"
+                        android:maxLength="13"
+                        android:paddingStart="@dimen/size5dp"
+                        android:paddingEnd="@dimen/size5dp"
+                        android:textColor="@color/white"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/BlueGray"
+                    android:padding="@dimen/size5dp">
+
+                    <TextView
+                        android:id="@+id/condition_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size5dp"
+                        android:text="@string/name_product"
+                        android:textColor="@color/BlueGrayLight" />
+
+                    <EditText
+                        android:id="@+id/search_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size50dp"
+                        android:background="@drawable/edittext_shape"
+                        android:ems="8"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/size5dp"
+                        android:paddingEnd="@dimen/size5dp"
+                        android:textColor="@color/white"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </TableRow>
+
+            </TableLayout>
+
             <LinearLayout
+                android:id="@+id/btn_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/nav_icon"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="15dp"
-                    android:layout_weight="1"
-                    app:navigationIcon="@drawable/nav_img_shape" />
-
-                <SearchView
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="9"
-                    android:background="@drawable/searchview_shape"
-                    android:gravity="center" />
+                android:layout_column="1"
+                android:background="@color/BlueGray"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/padding_btn_register_data"
+                android:paddingBottom="@dimen/padding_btn_register_data">
 
                 <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/options" />
+                    android:layout_width="@dimen/width_img_btn_register_data"
+                    android:layout_height="@dimen/height_img_btn_register_data"
+                    app:srcCompat="@drawable/search" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_search"
+                    android:textColor="@color/BlueGrayLight"
+                    android:textSize="@dimen/size_btn_register_data" />
 
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +120,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+            app:layout_constraintTop_toTopOf="@+id/guideline7">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -137,7 +177,7 @@
                 android:orientation="horizontal">
 
                 <ListView
-                    android:id="@+id/list_scan1"
+                    android:id="@+id/list_result_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -157,7 +197,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape_title_222"
                     android:text="Quantity:"
-                    android:textColor="@color/BlueGrayLight" />
+                    android:textColor="@color/BlueGrayLight"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/total_money"
@@ -178,7 +219,8 @@
                     android:layout_weight="2"
                     android:background="@drawable/cell_shape_title_222"
                     android:text="Error:"
-                    android:textColor="@color/BlueGrayLight" />
+                    android:textColor="@color/BlueGrayLight"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
@@ -187,10 +229,11 @@
             android:id="@+id/btn_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginEnd="-200dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline8"
             app:srcCompat="@drawable/reply" />
 
@@ -203,14 +246,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.18" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline8"
@@ -218,13 +263,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_end="144dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="238dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView

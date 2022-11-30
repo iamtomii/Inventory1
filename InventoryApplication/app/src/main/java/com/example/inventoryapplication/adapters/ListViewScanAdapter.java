@@ -101,7 +101,7 @@ public class ListViewScanAdapter extends BaseAdapter implements Filterable {
         LayoutInflater inflater = activity.getLayoutInflater();
         if (convertView == null) {
             // Init custom layout list scan
-            convertView = inflater.inflate(R.layout.adapter_list_scan, null);
+            convertView = inflater.inflate(R.layout.adapter_list_scan1, null);
             viewHolder = new ViewHolder();
 
             // Init column list view
@@ -131,10 +131,10 @@ public class ListViewScanAdapter extends BaseAdapter implements Filterable {
         if (position == 0) {
             // Set for first line in list view
             convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE));
-            viewHolder.lv_title_column1.setTextColor(Color.WHITE);
-            viewHolder.lv_title_column2.setTextColor(Color.WHITE);
-            viewHolder.lv_title_column3.setTextColor(Color.WHITE);
-            viewHolder.lv_title_column4.setTextColor(Color.WHITE);
+            viewHolder.lv_title_column1.setTextColor(Color.BLACK);
+            viewHolder.lv_title_column2.setTextColor(Color.BLACK);
+            viewHolder.lv_title_column3.setTextColor(Color.BLACK);
+            viewHolder.lv_title_column4.setTextColor(Color.BLACK);
         } else {
             // Set background from the second line in list view
             if (position % 2 == 0) {

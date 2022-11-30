@@ -36,7 +36,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,7 +95,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private Toolbar nav_icon;
     private DrawerLayout drawer_layout;
     private NavigationView nav_views;
-    private SearchView searchView;
     // #HUYNHQUANGVINH list rfid not found
     Set<String> setRfidNotFound = new HashSet<>();
     SQLiteDatabaseHandler db;
@@ -336,7 +334,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         lvProduct = (ListView) findViewById(R.id.list_scan);
 
         btnBack = (ImageView) findViewById(R.id.btn_back);
-        //btnsearch = (Button) findViewById(R.id.btn_search);
+        btnSearch = (ImageView) findViewById(R.id.btn_search);
         //btnDelete = (LinearLayout) findViewById(R.id.btn_delete);
         btnSave = (ImageView) findViewById(R.id.btn_save_data);
         btnDelete_all = (ImageView) findViewById(R.id.btn_delete_all);
@@ -348,7 +346,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         drawer_layout=(DrawerLayout) findViewById((R.id.drawer_layout));
         nav_views=(NavigationView) findViewById(R.id.nav_views);
         btnBack.setOnClickListener(this);
-        //btnsearch.setOnClickListener(this);
+        btnSearch.setOnClickListener(this);
         //btnDelete.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         btnDelete_all.setOnClickListener(this);
@@ -398,25 +396,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 return true;
             }
         });
-        ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataActivity.this,
-                arrDataInList);
-        lvProduct.setAdapter(adapterBook);
-        searchView=(SearchView) findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                System.out.println(query);
-                adapterBook.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapterBook.getFilter().filter(newText);
-                return false;
-            }
-        });
-
         reloadSQLiteData();
 
     }
@@ -476,10 +455,10 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_back:
                 eventClickBack();
                 break;
-            //case R.id.btn_search:
-                //eventCLickSearch();
+            case R.id.btn_search:
+                eventCLickSearch();
                 //initDataCustom();
-               // break;
+               break;
             case R.id.btn_delete_all:
                 eventClickDeleteAll();
                 //initOneDataCustom();
@@ -610,7 +589,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    /**
+    /**sea
      * Function show dialog confirm back
      */
     private void showDialogMessageConfirmSaveToContinue() {
@@ -1211,7 +1190,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
     private void eventDisableButton() {
 
-        //btnSearch.setClickable(false);
+        btnSearch.setClickable(false);
         btnBack.setClickable(false);
         //btnDelete.setClickable(false);
         btnDelete_all.setClickable(false);
@@ -1225,7 +1204,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
     private void eventEnableButton() {
 
-        //btnSearch.setClickable(true);
+        btnSearch.setClickable(true);
         btnBack.setClickable(true);
         //btnDelete.setClickable(true);
         btnDelete_all.setClickable(true);

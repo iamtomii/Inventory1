@@ -1,7 +1,6 @@
 package com.example.inventoryapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,27 +9,25 @@ import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.inventoryapplication.R;
 import com.example.inventoryapplication.adapters.ListViewSearchAdapter;
-import com.example.inventoryapplication.common.constants.Constants;
 import com.example.inventoryapplication.common.constants.Message;
 import com.example.inventoryapplication.common.entities.InforProductEntity;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView lvSearchResult;
-    LinearLayout btn_search,btn_back;
+    LinearLayout btn_search;
+    ImageView btn_back;
     EditText search_cd1, search_name;
     LinkedList<InforProductEntity> arrDataInfoProduct;
     SQLiteDatabaseHandler db;
@@ -38,7 +35,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search1);
 
         initView();
     }
@@ -47,7 +44,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         // Set variable for list view
         lvSearchResult = (ListView) findViewById(R.id.list_result_search);
         btn_search  = (LinearLayout) findViewById(R.id.btn_search);
-        btn_back  = (LinearLayout) findViewById(R.id.btn_back);
+        btn_back  = (ImageView) findViewById(R.id.btn_back);
         search_cd1  = (EditText) findViewById(R.id.search_cd1);
         search_name  = (EditText) findViewById(R.id.search_name);
         arrDataInfoProduct= new LinkedList<>();

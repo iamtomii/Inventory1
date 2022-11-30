@@ -90,7 +90,7 @@ public class ListViewSearchAdapter extends BaseAdapter {
 
         if(convertView == null) {
             // Init custom layout list scan
-            convertView = inflater.inflate(R.layout.adapter_list_scan, null);
+            convertView = inflater.inflate(R.layout.adapter_list_scan1, null);
             viewHolder = new ViewHolder();
 
             // Init column list view
