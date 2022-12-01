@@ -47,7 +47,8 @@ public class ExcelExporter {
         callable = callableInput;
         db = new SQLiteDatabaseHandler(context);
         File sd = Environment.getExternalStorageDirectory();
-        String csvFile = "inventory_smartactive_"+sdf.format(new Date(System.currentTimeMillis()))+".xls";
+        //String csvFile = "inventory_smartactive_"+sdf.format(new Date(System.currentTimeMillis()))+".xls";
+        String csvFile = "inventory_smartactive_"+sdf.format(new Date(System.currentTimeMillis()))+".csv";
        // String csvFile = "inventory_export.xls";
 
         File directory = new File(sd.getAbsolutePath()+"/inventory_data");

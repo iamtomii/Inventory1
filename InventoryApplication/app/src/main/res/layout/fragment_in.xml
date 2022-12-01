@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".fragment.InFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bar_shape"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@id/btn_back"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center|left"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/left_arrow" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="4"
+                android:text="New Incoming"
+                android:textColor="@color/BlueGrayLight"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/btn_save_data"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center|right"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/check" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:text="Serial"
+                    android:textColor="@color/BlueGray"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_port2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:background="@drawable/input_shape"
+                        android:ems="10"
+                        android:fontFamily="@font/cairo_extralight"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:padding="5dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:id="@+id/txt_shop2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="bottom|left"
+                        android:paddingLeft="10dp"
+                        android:text="Date"
+                        android:textColor="@color/BlueGray"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edt_name2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:background="@drawable/input_shape"
+                        android:ems="10"
+                        android:fontFamily="@font/cairo_extralight"
+                        android:gravity="bottom"
+                        android:inputType="textPersonName"
+                        android:padding="5dp"
+                        android:textSize="15sp"
+                        android:hint="01/12/2022"
+                        android:textColorHint="@color/BlueGray"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_shop"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="bottom|left"
+                    android:text="Inv.Name"
+                    android:textColor="@color/BlueGray"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edt_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:background="@drawable/input_shape"
+                    android:ems="10"
+                    android:fontFamily="@font/cairo_extralight"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:padding="5dp"
+                    android:textSize="15sp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="bottom|left"
+                    android:text="Supplier"
+                    android:textColor="@color/BlueGray"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edt_ip2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+
+                    android:layout_weight="4"
+                    android:background="@drawable/input_shape"
+                    android:ems="10"
+                    android:fontFamily="@font/cairo_extralight"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="bottom|left"
+                    android:text="Comment"
+                    android:textColor="@color/BlueGray"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edt_power_level2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:background="@drawable/input_shape"
+                    android:ems="10"
+                    android:fontFamily="@font/cairo_extralight"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="20dp" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:src="@drawable/qr_code_scan" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="50dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

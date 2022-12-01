@@ -44,6 +44,7 @@ import com.example.inventoryapplication.adapters.ListViewScanAdapter;
 import com.example.inventoryapplication.common.constants.Constants;
 import com.example.inventoryapplication.common.constants.Message;
 import com.example.inventoryapplication.common.entities.InforProductEntity;
+import com.example.inventoryapplication.common.function.CsvExport;
 import com.example.inventoryapplication.common.function.ExcelExporter;
 import com.example.inventoryapplication.common.function.SupModRfidCommon;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
@@ -826,7 +827,15 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         db.insertAllProducts(arrDataInList);
         if(!db.getAllProducts().isEmpty()){
             showProgressRunUi();
-            ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
+            CsvExport.writeData(this, new Callable() {
+                @Override
+                public void call(boolean result) {
+                    showToast("Export success!!!");
+                    dismissProgress();
+                    showDialogMessageExportYes();
+                }
+            });
+            /*ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
                 @Override
                 public void call(boolean result) {
                     if(result){
@@ -835,7 +844,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                         showDialogMessageExportYes();
                     }
                 }
-            });
+            });*/
 
         }
         else showToast("No data to export!!!");

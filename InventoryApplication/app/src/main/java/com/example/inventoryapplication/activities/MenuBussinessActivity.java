@@ -1,7 +1,10 @@
 package com.example.inventoryapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.inventoryapplication.R;
+import com.example.inventoryapplication.common.constants.Message;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
+import com.example.inventoryapplication.fragment.DialogYesNoFragment;
+import com.example.inventoryapplication.fragment.InFragment;
+import com.example.inventoryapplication.fragment.OutFragment;
+import com.example.inventoryapplication.interfaces.Callable;
 
 public class MenuBussinessActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton btn_inventory,btn_in,btn_out,btn_setting;
@@ -32,13 +40,16 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
         btn_back_menu = (ImageView) findViewById(R.id.btn_back_menu);
         btn_inventory = (ImageButton) findViewById(R.id.btn_inventory);
         inventory_number = (TextView) findViewById(R.id.inventory_number);
-
+        btn_in=(ImageButton) findViewById(R.id.btn_in);
+        btn_out=(ImageButton) findViewById(R.id.btn_out);
         btn_back_menu.setOnClickListener(this);
         btn_inventory.setOnClickListener(this);
-
+        btn_in.setOnClickListener(this);
+        btn_out.setOnClickListener(this);
         if(db.getProductsCount()==0)
             inventory_number.setText("");
         else    inventory_number.setText(db.getProductsCount()+"");
+
     }
 
     @Override
@@ -47,11 +58,19 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_inventory:
                 startActivity(new Intent(MenuBussinessActivity.this,ScanDataActivity.class));
                 break;
+            case R.id.btn_in:
+                clickIn();
+                break;
+            case R.id.btn_out:
+                clickOut();
+                break;
             case R.id.btn_back_menu:
                 finish();
                 break;
         }
     }
+
+
 
     @Override
     protected void onResume() {
@@ -66,4 +85,44 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_bussiness);
     }*/
+    private void clickIn() {
+        //showDialogMessageConfirmExport();
+        InFragment inFragment=new InFragment(this,new Callable() {
+            @Override
+            public void call(boolean result) {
+                if(result==true){
+
+                }else{
+
+                }
+            }
+        });
+        loadFragment(inFragment);
+    }
+    private void clickOut() {
+        OutFragment outFragment=new OutFragment(this, new Callable() {
+            @Override
+            public void call(boolean result) {
+                if (result == true) {
+                } else {
+                }
+            }
+            });
+        loadFragment(outFragment);
+    }
+    private void loadFragment(Fragment fragment) {
+// create a FragmentManager
+        try {
+            System.out.println("loadFragment: ");
+            FragmentManager fm = getFragmentManager();
+// create a FragmentTransaction to begin the transaction and replace the Fragment
+            android.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+// replace the FrameLayout with new Fragment
+            fragmentTransaction.replace(R.id.product_manager_layout, fragment);
+            fragmentTransaction.commit(); // save the changes
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
