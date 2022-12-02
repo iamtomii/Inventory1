@@ -2,7 +2,7 @@ package com.example.inventoryapplication.common.constants;
 
 public class Config {
 
-
+    public static String HTTP_SEVER_ODOO = "http://192.168.1.140:8015";
     public static String HTTP_SERVER_SHOP = "http://192.168.1.94:8080";   // Connect API server TONY THINH
    // private static final String HTTP_SERVER_SHOP = "http://192.168.1.244:8027";   // Connect API server TONY THINH
     /**
@@ -44,6 +44,6 @@ public class Config {
      */
     //public static final String API_RFID_TO_JAN = HTTP_SERVER_SHOP + "/api/v2/rfids_to_jans";
     public static final String API_RFID_TO_JAN = "/api/v2/rfids_to_jans";
-
+    public static final String API_ODOO = "/inventory_controller/test_update";
 
 }
