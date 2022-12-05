@@ -42,27 +42,36 @@ import jxl.write.Label;
 public class CsvExport {
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
     static SQLiteDatabaseHandler db;
+    static String file_name;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void writeData(Context context, Callable callable){
+    public static void writeData(Context context,String[] header ,Callable callable){
         db = new SQLiteDatabaseHandler(context);
         List<String[]> csvData = new ArrayList<String[]>();
 
         File sd = Environment.getExternalStorageDirectory();
-        File directory = new File(sd.getAbsolutePath()+"/inventory_data");
+
+        csvData.add(header);
+
+        if(header.length==4){
+            file_name="/inventory_data";
+            for(InforProductEntity p : db.getAllProducts()){
+                String[] row = new String[]{p.getRfidCode(), p.getGoodName(),p.getQuantity()+"",p.getBarcodeCD1()};
+                csvData.add(row);
+            }
+        }else {
+            file_name="/incoming_data";
+            for (InforProductEntity p : db.getAllProducts()) {
+                String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), p.getQuantity() + "", p.getBarcodeCD1()};
+                csvData.add(row);
+            }
+        }
+        File directory = new File(sd.getAbsolutePath()+file_name);
         //create directory if not exist
         if (!directory.isDirectory()) {
             boolean rs = directory.mkdirs();
             System.out.println(rs);
         }
-        String[] header = new String[] {"rfid", "product_name", "quantity", "boardcode"};
-        csvData.add(header);
-        for(InforProductEntity p : db.getAllProducts()){
-            String[] row = new String[]{p.getRfidCode(), p.getGoodName(),p.getQuantity()+"",p.getBarcodeCD1()};
-            //System.out.println("tommy1: "+p.getRfidCode());
-            csvData.add(row);
-        }
-
 
         String csvFile = "/inventory_smartactive_"+sdf.format(new Date(System.currentTimeMillis()))+".csv";
         String fileName = directory+csvFile;

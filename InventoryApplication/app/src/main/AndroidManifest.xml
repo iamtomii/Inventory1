@@ -42,6 +42,9 @@
             android:name=".activities.ScanDataActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.ScanDataInActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MenuBussinessActivity"
             android:exported="true" />
         <activity

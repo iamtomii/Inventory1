@@ -19,7 +19,44 @@ public class InforProductEntity {
     private int TaxIncludePrice;
     private int Quantity;
     private String RfidCode;
+    private String TypeProduct;
 
+
+
+    private String Date;
+    private String InventoryName;
+    private String Serial;
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        this.Date = date;
+    }
+
+    public String getInventoryName() {
+        return InventoryName;
+    }
+
+    public void setInventoryName(String inventoryName) {
+        this.InventoryName = inventoryName;
+    }
+
+    public String getSerial() {
+        return Serial;
+    }
+
+    public void setSerial(String serial) {
+        this.Serial = serial;
+    }
+    public String getTypeProduct() {
+        return TypeProduct;
+    }
+
+    public void setTypeProduct(String typeProduct) {
+        this.TypeProduct = typeProduct;
+    }
     public String getGoodName() {
         return goodName;
     }
@@ -89,6 +126,10 @@ public class InforProductEntity {
         return "InforProductEntity{" +
                 "ShelfCode='" + ShelfCode + '\'' +
                 ", goodName='" + goodName + '\'' +
+                ", TypeProduct='" + TypeProduct + '\'' +
+                ", Date='" + Date + '\'' +
+                ", InventoryName='" + InventoryName + '\'' +
+                ", Serial='" + Serial + '\'' +
                 ", BarcodeCD1='" + BarcodeCD1 + '\'' +
                 ", BarcodeCD2='" + BarcodeCD2 + '\'' +
                 ", BasePrice=" + BasePrice +

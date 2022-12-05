@@ -1,11 +1,5 @@
 package com.example.inventoryapplication.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -39,13 +33,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.example.inventoryapplication.R;
 import com.example.inventoryapplication.adapters.ListViewScanAdapter;
 import com.example.inventoryapplication.common.constants.Constants;
 import com.example.inventoryapplication.common.constants.Message;
 import com.example.inventoryapplication.common.entities.InforProductEntity;
 import com.example.inventoryapplication.common.function.CsvExport;
-import com.example.inventoryapplication.common.function.ExcelExporter;
 import com.example.inventoryapplication.common.function.SupModRfidCommon;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
 import com.example.inventoryapplication.fragment.DialogYesNoFragment;
@@ -54,7 +53,6 @@ import com.example.inventoryapplication.thread.ConnectThread;
 import com.example.inventoryapplication.thread.HttpPostRfid;
 import com.example.inventoryapplication.thread.HttpRfidResponse;
 import com.google.android.material.navigation.NavigationView;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,14 +67,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-public class ScanDataActivity extends AppCompatActivity implements View.OnClickListener, HttpRfidResponse {
+public class ScanDataInActivity extends AppCompatActivity implements View.OnClickListener, HttpRfidResponse {
     // #ADD
     // #ADD_ERROR
     Button btn_error;
     private int MODE_SCAN = 0;
     private int PAUSE_DEVICE = 0;
     private int IS_SHOW_DIALOG_LIMIT = 0;
+    private String typeproduct,serial,ivt_name,date;
     private TextView total_quantity, total_money,total_error;
     private EditText edt_receive_barcode_wireless; // #ADD_BARCODE
     private ImageView btnBack, btnSearch, btnDelete_all, btnDelete, btnSave, btnMode;
@@ -96,6 +94,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private Toolbar nav_icon;
     private DrawerLayout drawer_layout;
     private NavigationView nav_views;
+    private TextView txt_name;
     // #HUYNHQUANGVINH list rfid not found
     Set<String> setRfidNotFound = new HashSet<>();
     SQLiteDatabaseHandler db;
@@ -104,7 +103,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav);
+        setContentView(R.layout.activity_scan_incoming);
 
         db = new SQLiteDatabaseHandler(this);
         initViews();
@@ -147,7 +146,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         new Thread(new Runnable() {
             @Override
             public void run() {
-                connectThread.connect(bluetoothDeviceConnected2(), ScanDataActivity.this, new Callable() {
+                connectThread.connect(bluetoothDeviceConnected2(), ScanDataInActivity.this, new Callable() {
                     @Override
                     public void call(boolean result) {
                         showToast("Starting...");
@@ -291,7 +290,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void run() {
                 // Update list view
-                ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataActivity.this,
+                ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataInActivity.this,
                         arrDataInList);
                 lvProduct.setAdapter(adapterBook);
 
@@ -328,6 +327,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         total_quantity = (TextView) findViewById(R.id.total_quantity);
         total_money = (TextView) findViewById(R.id.total_money);
         total_error = (TextView) findViewById(R.id.total_error);
+        txt_name=(TextView) findViewById(R.id.txt_name);
         //edt_receive_barcode_wireless = (EditText) findViewById(R.id.edt_receive_barcode_wireless);
         inforProductEntity = new InforProductEntity();
         arrDataInList = new LinkedList<>();
@@ -367,7 +367,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             public void onClick(View view) {
                 drawer_layout.closeDrawer(GravityCompat.START);
                 eventClickBack();
-                }
+            }
         });
 
         nav_views.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -378,24 +378,33 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 switch (id)
                 {
                     case R.id.nav_account:
-                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_menu_app:
                         eventClickItemMenuApp();
                     case R.id.nav_manager:
                         drawer_layout.closeDrawer((GravityCompat.START));
                         eventClickBack();
                     case R.id.nav_setting:
-                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_themes:
-                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_logout:
-                        Toast.makeText(ScanDataActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     default:
                         return true;
                 }
                 return true;
             }
         });
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            typeproduct= bundle.getString("typeproduct", "");
+            serial= bundle.getString("serial", "");
+            ivt_name= bundle.getString("ivt_name", "");
+            date= bundle.getString("date", "");
+        }
+        txt_name.setText(ivt_name);
         reloadSQLiteData();
 
     }
@@ -405,7 +414,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         setCustomOutput.clear();
         setCustomOutput.clear();
         //ADD SQLITE DATA
-        for(InforProductEntity i : db.getAllProducts()){
+        for(InforProductEntity i : db.getAllProductsbyType(typeproduct)){
             setCustomInput.add(i.getRfidCode());
             setCustomOutput.add(i.getRfidCode());
         }
@@ -443,7 +452,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
-//2002000005526
+    //2002000005526
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
         return arrDataInList;
@@ -458,7 +467,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_search:
                 eventCLickSearch();
                 //initDataCustom();
-               break;
+                break;
             case R.id.btn_delete_all:
                 eventClickDeleteAll();
                 //initOneDataCustom();
@@ -484,7 +493,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(ScanDataActivity.this,s+"",Toast.LENGTH_LONG).show();
+                Toast.makeText(ScanDataInActivity.this,s+"",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -524,7 +533,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             showDialogConfirmBack();
         } else {
 
-            startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
+            startActivity(new Intent(ScanDataInActivity.this, MenuAppActivity.class));
         }
 
     }
@@ -535,9 +544,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 if(result==true){
                     db.insertAllProducts(arrDataInList);
                     //eventDisconnectDevice();
-                    startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
+                    startActivity(new Intent(ScanDataInActivity.this, MenuAppActivity.class));
                 }else{
-                    startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
+                    startActivity(new Intent(ScanDataInActivity.this, MenuAppActivity.class));
                 }
             }
         });
@@ -549,11 +558,11 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
 
     private void eventClickBack() {
-        //if (arrDataInList.size() > 0) {
+        if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
-       // } else {
-          //  isKeepScanMagazine = false;
-       // }
+        } else {
+            isKeepScanMagazine = false;
+        }
 
         if (arrDataInList.size() > 0) {
             // Stop scan honeywell
@@ -598,7 +607,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             IS_SHOW_DIALOG_LIMIT=1;
             PAUSE_DEVICE = 1;
             //Show message confirm
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataInActivity.this);
             alertDialog.setMessage(String.format(Message.MESSAGE_CONFIRM_OVER_DATA, Constants.LIMIT_ONCE));
 
             alertDialog.setCancelable(false);
@@ -649,7 +658,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private void showDialogMessageConfirmSearch() {
 
         //Show message confirm
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataInActivity.this);
         alertDialog.setMessage(Message.MESSAGE_CONFIRM_REGISTER_DATA);
 
         alertDialog.setCancelable(false);
@@ -665,7 +674,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 arrDataInList.clear();
                 reloadSQLiteData();
                 restartListView();
-                startActivity(new Intent(ScanDataActivity.this,SearchActivity.class));
+                startActivity(new Intent(ScanDataInActivity.this,SearchActivity.class));
 
             }
         });
@@ -757,7 +766,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private void eventCLickSearch() {
         if(!arrDataInList.isEmpty())
             showDialogMessageConfirmSearch();
-        else startActivity(new Intent(ScanDataActivity.this,SearchActivity.class));
+        else startActivity(new Intent(ScanDataInActivity.this,SearchActivity.class));
     }
     /**
      * Function click Export
@@ -826,8 +835,8 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         db.insertAllProducts(arrDataInList);
         if(!db.getAllProducts().isEmpty()){
             showProgressRunUi();
-            String[] header = new String[] {"rfid", "product_name", "quantity", "boarcode"};
-            CsvExport.writeData(this, header,new Callable(){
+            String[] header = new String[] {"serial","inv_name","rfid", "product_name", "quantity", "boarcode"};
+            CsvExport.writeData(this, header,new Callable() {
                 @Override
                 public void call(boolean result) {
                     showToast("Export success!!!");
@@ -895,7 +904,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
         if (arrDataInList.size() > 0) {
             //Show message confirm
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataActivity.this);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataInActivity.this);
             alertDialog.setMessage(Message.MESSAGE_CONFIRM_DELETE_ALL);
 
             alertDialog.setCancelable(false);
@@ -993,7 +1002,10 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         }
         inforProductEntity.setBarcodeCD1(bar1);
         inforProductEntity.setBasePrice(cost);
-        inforProductEntity.setTypeProduct("inventory");
+        inforProductEntity.setTypeProduct(typeproduct);
+        inforProductEntity.setDate(date);
+        inforProductEntity.setInventoryName(ivt_name);
+        inforProductEntity.setSerial(serial);
         inforProductEntity.setQuantity(1);
         inforProductEntity.setTaxIncludePrice(tax);
         inforProductEntity.setGoodName(name);
@@ -1138,7 +1150,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(ScanDataActivity.this, Constants.INVALID_BARCODE, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScanDataInActivity.this, Constants.INVALID_BARCODE, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -1173,7 +1185,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 //eventOpenButton(false);
 
                 AlertDialog.Builder dialog =
-                        new AlertDialog.Builder(ScanDataActivity.this);
+                        new AlertDialog.Builder(ScanDataInActivity.this);
                 dialog
                         .setMessage(Message.NOTIFICATION_BARCODE_INVALID)
                         .setCancelable(false)
@@ -1400,11 +1412,11 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                             //showDialog(err.get(0).toString(), err);
                         }
                     } else {
-                        SupModRfidCommon.ToastMessage(ScanDataActivity.this, jsonObject.getString(Constants.KEY_MESSAGE)).show();
+                        SupModRfidCommon.ToastMessage(ScanDataInActivity.this, jsonObject.getString(Constants.KEY_MESSAGE)).show();
                     }
                 }
             } else {
-                SupModRfidCommon.showNotifyErrorDialog(ScanDataActivity.this).show();
+                SupModRfidCommon.showNotifyErrorDialog(ScanDataInActivity.this).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1434,8 +1446,4 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
-
-
 }

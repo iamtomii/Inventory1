@@ -90,17 +90,18 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/edt_port2"
+                        android:id="@+id/edt_serial"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="2"
                         android:background="@drawable/input_shape"
                         android:ems="10"
-                        android:fontFamily="@font/cairo_extralight"
-                        android:gravity="center"
-                        android:inputType="number"
+                        android:gravity="bottom"
                         android:padding="5dp"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/cairo_extralight"
+                        android:inputType="number"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                     <TextView
@@ -115,15 +116,15 @@
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/edt_name2"
+                        android:id="@+id/edt_date"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:background="@drawable/input_shape"
                         android:ems="10"
                         android:fontFamily="@font/cairo_extralight"
+                        android:inputType="date"
                         android:gravity="bottom"
-                        android:inputType="textPersonName"
                         android:padding="5dp"
                         android:textSize="15sp"
                         android:hint="01/12/2022"
@@ -149,7 +150,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/edt_name"
+                    android:id="@+id/edt_ivt_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -181,7 +182,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/edt_ip2"
+                    android:id="@+id/edt_supplier"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -212,7 +213,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/edt_power_level2"
+                    android:id="@+id/edt_cmt"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -236,7 +237,7 @@
             android:padding="20dp" >
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/btn_scan_good"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="right"

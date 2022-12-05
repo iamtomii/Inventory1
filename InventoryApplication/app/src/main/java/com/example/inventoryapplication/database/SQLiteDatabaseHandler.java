@@ -38,6 +38,10 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
     private static String TAX_INCLUDE_PRICE = "TaxIncludePrice";
     private static String QUANTITY = "Quantity";
     private static String RFID_CODE = "RfidCode";
+    private static String TYPE_TABLE= "TypeProduct";
+    private static String DATE="Date";
+    private static String IVT_NAME="InventoryName";
+    private static String SERIAL_CODE="Serial";
 
     public SQLiteDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,6 +53,10 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         String CREATE_COUNTRY_TABLE = "CREATE TABLE " + TABLE_PRODUCT + "("
                 + RFID_CODE + " TEXT PRIMARY KEY,"
                 + GOOD_NAME + " TEXT,"
+                + TYPE_TABLE + " TEXT,"
+                + DATE + " TEXT,"
+                + IVT_NAME + " TEXT,"
+                + SERIAL_CODE + " TEXT,"
                 + BARCODE_01 + " TEXT,"
                 + BARCODE_02 + " TEXT,"
                 + BASE_PRICE + " INTEGER,"
@@ -65,6 +73,11 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
+    public void deleteTable(SQLiteDatabase db){
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
+        // Create tables again
+        onCreate(db);
+    }
 
     /**
      * All CRUD(Create, Read, Update, Delete) Operations
@@ -77,6 +90,11 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
 
             ContentValues values = new ContentValues();
             values.put(BASE_PRICE, product.getBasePrice());
+            values.put(TYPE_TABLE, product.getTypeProduct());
+            values.put(DATE, product.getDate());
+            values.put(IVT_NAME, product.getInventoryName());
+            values.put(SERIAL_CODE, product.getSerial());
+
             values.put(GOOD_NAME, product.getGoodName());
             values.put(RFID_CODE, product.getRfidCode());
 
@@ -101,6 +119,10 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(RFID_CODE, product.getRfidCode());
             values.put(GOOD_NAME, product.getGoodName());
+            values.put(TYPE_TABLE, product.getTypeProduct());
+            values.put(DATE, product.getDate());
+            values.put(IVT_NAME, product.getInventoryName());
+            values.put(SERIAL_CODE, product.getSerial());
             values.put(BARCODE_01, product.getBarcodeCD1());
             values.put(BARCODE_02, product.getBarcodeCD2());
             values.put(BASE_PRICE, product.getBasePrice());
@@ -121,6 +143,10 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(RFID_CODE, product.getRfidCode());
             values.put(GOOD_NAME, product.getGoodName());
+            values.put(TYPE_TABLE, product.getTypeProduct());
+            values.put(DATE, product.getDate());
+            values.put(IVT_NAME, product.getInventoryName());
+            values.put(SERIAL_CODE, product.getSerial());
             values.put(BARCODE_01, product.getBarcodeCD1());
             values.put(BARCODE_02, product.getBarcodeCD2());
             values.put(BASE_PRICE, product.getBasePrice());
@@ -139,18 +165,22 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_PRODUCT, new String[] { RFID_CODE,
-                        GOOD_NAME, BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, RFID_CODE + "=?",
+                        GOOD_NAME,TYPE_TABLE,DATE,IVT_NAME,SERIAL_CODE, BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, RFID_CODE + "=?",
                 new String[] { String.valueOf(rfid) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         InforProductEntity productEntity = new InforProductEntity();
         productEntity.setRfidCode(cursor.getString(0));
         productEntity.setGoodName(cursor.getString(1));
-        productEntity.setBarcodeCD1(cursor.getString(2));
-        productEntity.setBarcodeCD2(cursor.getString(3));
-        productEntity.setBasePrice(Integer.parseInt(cursor.getString(4)));
-        productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(5)));
-        productEntity.setQuantity(Integer.parseInt(cursor.getString(6)));
+        productEntity.setTypeProduct(cursor.getString(2));
+        productEntity.setDate(cursor.getString(3));
+        productEntity.setInventoryName(cursor.getString(4));
+        productEntity.setSerial(cursor.getString(5));
+        productEntity.setBarcodeCD1(cursor.getString(6));
+        productEntity.setBarcodeCD2(cursor.getString(7));
+        productEntity.setBasePrice(Integer.parseInt(cursor.getString(8)));
+        productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(9)));
+        productEntity.setQuantity(Integer.parseInt(cursor.getString(10)));
         // return product
         return productEntity;
     }
@@ -160,7 +190,7 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_PRODUCT, new String[] { RFID_CODE,
-                        GOOD_NAME, BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, GOOD_NAME + " like ?",
+                        GOOD_NAME,TYPE_TABLE,DATE,IVT_NAME,SERIAL_CODE, BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, GOOD_NAME + " like ?",
                 new String[] { String.valueOf("%"+name+"%") }, null, null, null, null);
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -168,11 +198,15 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
                 InforProductEntity productEntity = new InforProductEntity();
                 productEntity.setRfidCode(cursor.getString(0));
                 productEntity.setGoodName(cursor.getString(1));
-                productEntity.setBarcodeCD1(cursor.getString(2));
-                productEntity.setBarcodeCD2(cursor.getString(3));
-                productEntity.setBasePrice(Integer.parseInt(cursor.getString(4)));
-                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(5)));
-                productEntity.setQuantity(Integer.parseInt(cursor.getString(6)));
+                productEntity.setTypeProduct(cursor.getString(2));
+                productEntity.setDate(cursor.getString(3));
+                productEntity.setInventoryName(cursor.getString(4));
+                productEntity.setSerial(cursor.getString(5));
+                productEntity.setBarcodeCD1(cursor.getString(6));
+                productEntity.setBarcodeCD2(cursor.getString(7));
+                productEntity.setBasePrice(Integer.parseInt(cursor.getString(8)));
+                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(9)));
+                productEntity.setQuantity(Integer.parseInt(cursor.getString(10)));
                 // Adding country to list
                 pList.add(productEntity);
             } while (cursor.moveToNext());
@@ -188,7 +222,7 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_PRODUCT, new String[] { RFID_CODE,
-                        GOOD_NAME, BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, BARCODE_01 + " like ?",
+                        GOOD_NAME, TYPE_TABLE,DATE,IVT_NAME,SERIAL_CODE,BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, BARCODE_01 + " like ?",
                 new String[] { String.valueOf("%"+barcode+"%") }, null, null, null, null);
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -196,11 +230,15 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
                 InforProductEntity productEntity = new InforProductEntity();
                 productEntity.setRfidCode(cursor.getString(0));
                 productEntity.setGoodName(cursor.getString(1));
-                productEntity.setBarcodeCD1(cursor.getString(2));
-                productEntity.setBarcodeCD2(cursor.getString(3));
-                productEntity.setBasePrice(Integer.parseInt(cursor.getString(4)));
-                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(5)));
-                productEntity.setQuantity(Integer.parseInt(cursor.getString(6)));
+                productEntity.setTypeProduct(cursor.getString(2));
+                productEntity.setDate(cursor.getString(3));
+                productEntity.setInventoryName(cursor.getString(4));
+                productEntity.setSerial(cursor.getString(5));
+                productEntity.setBarcodeCD1(cursor.getString(6));
+                productEntity.setBarcodeCD2(cursor.getString(7));
+                productEntity.setBasePrice(Integer.parseInt(cursor.getString(8)));
+                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(9)));
+                productEntity.setQuantity(Integer.parseInt(cursor.getString(10)));
                 // Adding country to list
                 pList.add(productEntity);
             } while (cursor.moveToNext());
@@ -224,11 +262,47 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
                 InforProductEntity productEntity = new InforProductEntity();
                 productEntity.setRfidCode(cursor.getString(0));
                 productEntity.setGoodName(cursor.getString(1));
-                productEntity.setBarcodeCD1(cursor.getString(2));
-                productEntity.setBarcodeCD2(cursor.getString(3));
-                productEntity.setBasePrice(Integer.parseInt(cursor.getString(4)));
-                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(5)));
-                productEntity.setQuantity(Integer.parseInt(cursor.getString(6)));
+                productEntity.setTypeProduct(cursor.getString(2));
+                productEntity.setDate(cursor.getString(3));
+                productEntity.setInventoryName(cursor.getString(4));
+                productEntity.setSerial(cursor.getString(5));
+                productEntity.setBarcodeCD1(cursor.getString(6));
+                productEntity.setBarcodeCD2(cursor.getString(7));
+                productEntity.setBasePrice(Integer.parseInt(cursor.getString(8)));
+                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(9)));
+                productEntity.setQuantity(Integer.parseInt(cursor.getString(10)));
+                // Adding country to list
+                pList.add(productEntity);
+            } while (cursor.moveToNext());
+        }
+
+        // return country list
+        return pList;
+    }
+    public List<InforProductEntity> getAllProductsbyType(String type) {
+        List<InforProductEntity> pList = new ArrayList<InforProductEntity>();
+        // Select All Query
+
+        String selectQuery = "SELECT  * FROM '" + TABLE_PRODUCT+"WHERE'"+TYPE_TABLE+"='"+type+"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery,null );
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                InforProductEntity productEntity = new InforProductEntity();
+                productEntity.setRfidCode(cursor.getString(0));
+                productEntity.setGoodName(cursor.getString(1));
+                productEntity.setTypeProduct(cursor.getString(2));
+                productEntity.setDate(cursor.getString(3));
+                productEntity.setInventoryName(cursor.getString(4));
+                productEntity.setSerial(cursor.getString(5));
+                productEntity.setBarcodeCD1(cursor.getString(6));
+                productEntity.setBarcodeCD2(cursor.getString(7));
+                productEntity.setBasePrice(Integer.parseInt(cursor.getString(8)));
+                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(9)));
+                productEntity.setQuantity(Integer.parseInt(cursor.getString(10)));
                 // Adding country to list
                 pList.add(productEntity);
             } while (cursor.moveToNext());
@@ -270,6 +344,10 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(RFID_CODE, product.getRfidCode());
         values.put(GOOD_NAME, product.getGoodName());
+        values.put(TYPE_TABLE, product.getTypeProduct());
+        values.put(DATE, product.getDate());
+        values.put(IVT_NAME, product.getInventoryName());
+        values.put(SERIAL_CODE, product.getSerial());
         values.put(BARCODE_01, product.getBarcodeCD1());
         values.put(BARCODE_02, product.getBarcodeCD2());
         values.put(BASE_PRICE, product.getBasePrice());
@@ -288,6 +366,7 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(product.getRfidCode()) });
         db.close();
     }
+
 
     // Deleting all countries
     public void deleteAllProducts() {
