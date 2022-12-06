@@ -103,7 +103,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan_incoming);
+        setContentView(R.layout.activity_scan_incoming_outgoing);
 
         db = new SQLiteDatabaseHandler(this);
         initViews();
@@ -414,7 +414,9 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         setCustomOutput.clear();
         setCustomOutput.clear();
         //ADD SQLITE DATA
+        System.out.println("tommytext2"+typeproduct);
         for(InforProductEntity i : db.getAllProductsbyType(typeproduct)){
+            System.out.println("tommytext1"+i.getRfidCode());
             setCustomInput.add(i.getRfidCode());
             setCustomOutput.add(i.getRfidCode());
         }
@@ -496,6 +498,16 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
                 Toast.makeText(ScanDataInActivity.this,s+"",Toast.LENGTH_LONG).show();
             }
         });
+    }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+    public void onBackPressedFragment() {
+        super.onBackPressed();
+        Intent i = new Intent(ScanDataInActivity.this, MenuBussinessActivity.class);
+        startActivity(i);
+        //finish();
     }
 
 
@@ -674,7 +686,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
                 arrDataInList.clear();
                 reloadSQLiteData();
                 restartListView();
-                startActivity(new Intent(ScanDataInActivity.this,SearchActivity.class));
+                onBackPressed();
 
             }
         });
@@ -790,10 +802,11 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void call(boolean result) {
                 if(result==true){
-                    db.deleteAllProducts();
-                    onBackPressed();
+                    db.deleteAllProductsbyType(typeproduct);
+                    onBackPressedFragment();
                 }else{
                     dismissProgress();
+                    onBackPressed();
                 }
             }
         });
@@ -833,10 +846,10 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
     // }
     private void eventExportYes(){
         db.insertAllProducts(arrDataInList);
-        if(!db.getAllProducts().isEmpty()){
+        if(!db.getAllProductsbyType(typeproduct).isEmpty()){
             showProgressRunUi();
-            String[] header = new String[] {"serial","inv_name","rfid", "product_name", "quantity", "boarcode"};
-            CsvExport.writeData(this, header,new Callable() {
+            String[] header = new String[] {"serial","inv_name","rfid", "product_name", "quantity", "barcode"};
+            CsvExport.writeData(this, header,typeproduct,new Callable() {
                 @Override
                 public void call(boolean result) {
                     showToast("Export success!!!");
@@ -943,7 +956,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
             setCustomOutput.clear();
             reloadSQLiteData();
             inforProductEntity = new InforProductEntity();
-            db.deleteAllProducts();
+            //db.deleteAllProducts();
             initListViewScreen();
         }
     }

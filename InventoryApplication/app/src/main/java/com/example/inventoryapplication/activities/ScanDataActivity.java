@@ -405,7 +405,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         setCustomOutput.clear();
         setCustomOutput.clear();
         //ADD SQLITE DATA
-        for(InforProductEntity i : db.getAllProducts()){
+        for(InforProductEntity i : db.getAllProductsbyType("inventory")){
             setCustomInput.add(i.getRfidCode());
             setCustomOutput.add(i.getRfidCode());
         }
@@ -781,7 +781,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void call(boolean result) {
                 if(result==true){
-                    db.deleteAllProducts();
+                    db.deleteAllProductsbyType("inventory");
                     onBackPressed();
                 }else{
                     dismissProgress();
@@ -824,10 +824,10 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     // }
     private void eventExportYes(){
         db.insertAllProducts(arrDataInList);
-        if(!db.getAllProducts().isEmpty()){
+        if(!db.getAllProductsbyType("inventory").isEmpty()){
             showProgressRunUi();
-            String[] header = new String[] {"rfid", "product_name", "quantity", "boarcode"};
-            CsvExport.writeData(this, header,new Callable(){
+            String[] header = new String[] {"rfid", "product_name", "quantity", "barcode"};
+            CsvExport.writeData(this, header,"inventory",new Callable(){
                 @Override
                 public void call(boolean result) {
                     showToast("Export success!!!");
@@ -934,7 +934,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             setCustomOutput.clear();
             reloadSQLiteData();
             inforProductEntity = new InforProductEntity();
-            db.deleteAllProducts();
+            //db.deleteAllProductsbyType("inventory");
             initListViewScreen();
         }
     }

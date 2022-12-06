@@ -18,6 +18,8 @@ public class InforProductEntity {
     private int BasePrice;
     private int TaxIncludePrice;
     private int Quantity;
+
+    private int id;
     private String RfidCode;
     private String TypeProduct;
 
@@ -27,6 +29,13 @@ public class InforProductEntity {
     private String InventoryName;
     private String Serial;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getDate() {
         return Date;
     }
@@ -136,6 +145,7 @@ public class InforProductEntity {
                 ", TaxIncludePrice=" + TaxIncludePrice +
                 ", Quantity=" + Quantity +
                 ", RfidCode='" + RfidCode + '\'' +
+                ", id='" + id + '\'' +
                 '}';
     }
 }

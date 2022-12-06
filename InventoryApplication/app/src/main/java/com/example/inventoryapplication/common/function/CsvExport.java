@@ -33,6 +33,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import android.util.Base64.*;
+import android.widget.Switch;
 
 import androidx.annotation.RequiresApi;
 
@@ -45,7 +46,7 @@ public class CsvExport {
     static String file_name;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void writeData(Context context,String[] header ,Callable callable){
+    public static void writeData(Context context,String[] header,String type,Callable callable){
         db = new SQLiteDatabaseHandler(context);
         List<String[]> csvData = new ArrayList<String[]>();
 
@@ -55,16 +56,28 @@ public class CsvExport {
 
         if(header.length==4){
             file_name="/inventory_data";
-            for(InforProductEntity p : db.getAllProducts()){
+            for(InforProductEntity p : db.getAllProductsbyType("inventory")){
                 String[] row = new String[]{p.getRfidCode(), p.getGoodName(),p.getQuantity()+"",p.getBarcodeCD1()};
                 csvData.add(row);
             }
         }else {
-            file_name="/incoming_data";
-            for (InforProductEntity p : db.getAllProducts()) {
-                String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), p.getQuantity() + "", p.getBarcodeCD1()};
-                csvData.add(row);
+            switch(type){
+                case "incoming":
+                    file_name="/incoming_data";
+                    for (InforProductEntity p : db.getAllProductsbyType("incoming")) {
+                        String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), p.getQuantity() + "", p.getBarcodeCD1()};
+                        csvData.add(row);
+                    }
+                    break;
+                case "outgoing":
+                    file_name="/outgoing_data";
+                    for (InforProductEntity p : db.getAllProductsbyType("outgoing")) {
+                    String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), p.getQuantity() + "", p.getBarcodeCD1()};
+                    csvData.add(row);
+                }
+                    break;
             }
+
         }
         File directory = new File(sd.getAbsolutePath()+file_name);
         //create directory if not exist

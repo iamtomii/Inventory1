@@ -26,7 +26,7 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
     ImageButton btn_inventory,btn_in,btn_out,btn_setting;
     ImageView btn_back_menu;
     SQLiteDatabaseHandler db;
-    TextView inventory_number;
+    TextView inventory_number,incoming_number,outgoing_number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +40,23 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
         btn_back_menu = (ImageView) findViewById(R.id.btn_back_menu);
         btn_inventory = (ImageButton) findViewById(R.id.btn_inventory);
         inventory_number = (TextView) findViewById(R.id.inventory_number);
+        incoming_number = (TextView) findViewById(R.id.incoming_number);
+        outgoing_number = (TextView) findViewById(R.id.outgoing_number);
         btn_in=(ImageButton) findViewById(R.id.btn_in);
         btn_out=(ImageButton) findViewById(R.id.btn_out);
         btn_back_menu.setOnClickListener(this);
         btn_inventory.setOnClickListener(this);
         btn_in.setOnClickListener(this);
         btn_out.setOnClickListener(this);
-        if(db.getProductsCount()==0)
-            inventory_number.setText("");
-        else    inventory_number.setText(db.getProductsCount()+"");
+        if(db.getProductsbyTypeCount("inventory")==0)
+            inventory_number.setText("(0)");
+        else    inventory_number.setText("("+db.getProductsbyTypeCount("inventory")+")");
+        if(db.getProductsbyTypeCount("incoming")==0)
+            incoming_number.setText("(0)");
+        else    incoming_number.setText("("+db.getProductsbyTypeCount("incoming")+")");
+        if(db.getProductsbyTypeCount("outgoing")==0)
+            outgoing_number.setText("(0)");
+        else    outgoing_number.setText("("+db.getProductsbyTypeCount("outgoing")+")");
 
     }
 
@@ -65,7 +73,7 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
                 clickOut();
                 break;
             case R.id.btn_back_menu:
-                finish();
+                startActivity(new Intent(MenuBussinessActivity.this, MenuAppActivity.class));
                 break;
         }
     }
@@ -75,10 +83,6 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-
-        if(db.getProductsCount()==0)
-            inventory_number.setText("");
-        else    inventory_number.setText(db.getProductsCount()+"");
     }
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +127,9 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private void countNumberProductWithType(){
+
     }
 
 }

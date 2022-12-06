@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import com.example.inventoryapplication.R;
 import com.example.inventoryapplication.activities.MenuBussinessActivity;
 import com.example.inventoryapplication.activities.ScanDataInActivity;
+import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
 import com.example.inventoryapplication.interfaces.Callable;
 
 import java.text.DateFormat;
@@ -34,7 +35,7 @@ public class InFragment extends android.app.Fragment implements View.OnClickList
     private ImageView btn_save,btn_back,btn_scan_good;
     private Date currentTime;
     private EditText edt_serial, edt_date,edt_ivt_name,edt_supplier,edt_cmt;
-
+    SQLiteDatabaseHandler db;
 
 
     @Override
@@ -46,6 +47,7 @@ public class InFragment extends android.app.Fragment implements View.OnClickList
         initView(view);
         return view;
     }
+
     public InFragment(){
     }
     @SuppressLint("ValidFragment")
@@ -56,6 +58,7 @@ public class InFragment extends android.app.Fragment implements View.OnClickList
     }
 
     private void initView(View view) {
+        db = new SQLiteDatabaseHandler(getActivity().getApplication());
         btn_save=(ImageView) view.findViewById(R.id.btn_save_data);
         btn_back=(ImageView) view.findViewById(R.id.btn_back);
         edt_serial=(EditText) view.findViewById(R.id.edt_serial);
@@ -71,8 +74,11 @@ public class InFragment extends android.app.Fragment implements View.OnClickList
         for (String w : currentTime.split("/")) {
             serialdate+=w;
         }
-        System.out.println("Tommyin:"+serialdate);
-        edt_serial.setText("00"+serialdate);
+        Integer serialNumber;
+        if(db.getProductsbyTypeCount("incoming")==0)
+            serialNumber=1;
+        else    serialNumber= Integer.valueOf(db.getProductsbyTypeCount("incoming")+"")+1;
+        edt_serial.setText("0"+serialdate+serialNumber);
         edt_date.setText(currentTime);
         btn_scan_good.setOnClickListener(this);
         btn_back.setOnClickListener(this);
@@ -98,6 +104,7 @@ public class InFragment extends android.app.Fragment implements View.OnClickList
                 break;
         }
     }
+
     private void close(){
         getActivity().getFragmentManager().beginTransaction().remove(InFragment.this).commit();
     }
