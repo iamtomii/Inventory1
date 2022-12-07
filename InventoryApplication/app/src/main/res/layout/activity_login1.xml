@@ -6,193 +6,226 @@
     android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/textView5"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:fontFamily="@font/cairo_bold"
-        android:gravity="center"
-        android:paddingLeft="5dp"
-        android:paddingTop="50dp"
-        android:paddingRight="5dp"
-        android:text="SMART ACTIVE"
-        android:textColor="@color/BlueDarkGray"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:shadowColor="@color/BlueGray"/>
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edt_userid"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/edittext_shape"
-        android:ems="10"
-        android:fontFamily="@font/cairo"
-        android:inputType="textPersonName"
-        android:padding="5dp"
-        android:text="USER ID"
-        android:textSize="15sp" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/cairo_bold"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingTop="50dp"
+            android:paddingRight="5dp"
+            android:shadowColor="@color/BlueGray"
+            android:text="SMART ACTIVE"
+            android:textColor="@color/BlueDarkGray"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-    <EditText
-        android:shadowColor="@color/BlueGray"
-        android:id="@+id/edt_password"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edittext_shape"
-        android:ems="10"
-        android:fontFamily="@font/cairo"
-        android:padding="5dp"
-        android:text="PASSWORD"
-        android:inputType="textPassword"
-        android:textSize="15sp" />
-
-    <Switch
-        android:id="@+id/switch1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/public_sans_thin"
-        android:textColor="@color/BlueGray"
-        android:layoutDirection="rtl"
-        android:minHeight="48dp"
-        android:text="Remember Login"
-        android:trackTint="@color/BlueGray"
-        android:thumbTint="@color/BlueGray"/>
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical">
 
-    <android.widget.Button
-        android:id="@+id/btn_login"
-        android:layout_gravity="center"
-        android:layout_width="380dp"
-        android:layout_height="@dimen/size50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_shape_bluelight"
-        android:text="LOGIN"
-        android:textColor="@color/BlueDarkGray"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/edt_userid"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_shape"
+            android:ems="10"
+            android:fontFamily="@font/cairo"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:hint="USER ID"
+            android:textSize="15sp" />
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_shape"
+            android:ems="10"
+            android:fontFamily="@font/cairo"
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:shadowColor="@color/BlueGray"
+            android:hint="PASSWORD"
+            android:textSize="15sp" />
 
-        <TableRow
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/public_sans_thin"
+            android:layoutDirection="rtl"
+            android:minHeight="48dp"
+            android:text="Remember Login"
+            android:textColor="@color/BlueGray"
+            android:thumbTint="@color/BlueGray"
+            android:trackTint="@color/BlueGray" />
+
+        <android.widget.Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_shape_bluelight"
+            android:text="LOGIN"
+            android:textColor="@color/BlueDarkGray"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/textView9"
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No account yet?"
-                android:fontFamily="@font/cairo"
-                android:textColor="@color/BlueGray"/>
+                android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create one"
-                android:fontFamily="@font/cairo"
-                android:textColor="@color/BlueGray"/>
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:text="No account yet?"
+                    android:textColor="@color/BlueGray" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="7dp"
-            android:gravity="center">
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:text="Create one"
+                    android:textColor="@color/BlueGray" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo"
-                android:textColor="@color/BlueGray"
-                android:text="Forgot password" />
-        </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp"
+                android:gravity="center">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="7dp"
-            android:gravity="center">
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:text="Forgot password"
+                    android:textColor="@color/BlueGray" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:fontFamily="@font/cairo"
-                android:text="Privacy policy"
-                android:textColor="@color/BlueGray"/>
-        </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp"
+                android:gravity="center">
 
-    </TableLayout>
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:gravity="center"
+                    android:text="Privacy policy"
+                    android:textColor="@color/BlueGray" />
+            </TableRow>
 
-    <TableLayout
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="10sp"
-        android:shrinkColumns="*"
-        android:stretchColumns="*">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <TableRow
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txv_device_id2"
+            android:layout_marginBottom="5dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/size10dp"
-                android:gravity="center"
-                android:text="@string/device_id"
-                android:textAlignment="center"
-                android:fontFamily="@font/cairo_extralight"
-                android:textColor="@color/BlueGray" />
-        </TableRow>
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/txv_device_id2"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/cairo_extralight"
+                    android:gravity="center"
+                    android:text="@string/device_id"
+                    android:textAlignment="center"
+                    android:textColor="@color/BlueGray" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/txv_app_version"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:fontFamily="@font/cairo_extralight"
-                android:layout_marginBottom="@dimen/size10dp"
-                android:text="@string/app_version"
-                android:textAlignment="center"
-                android:textColor="@color/BlueGray" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txv_db_version"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginBottom="@dimen/size10dp"
-                android:text="@string/database_version"
-                android:textAlignment="center"
-                android:fontFamily="@font/cairo_extralight"
-                android:textColor="@color/BlueGray" />
+                <TextView
+                    android:id="@+id/txv_app_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/cairo_extralight"
+                    android:text="@string/app_version"
+                    android:textAlignment="center"
+                    android:textColor="@color/BlueGray" />
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/txv_db_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/cairo_extralight"
+                    android:text="@string/database_version"
+                    android:textAlignment="center"
+                    android:textColor="@color/BlueGray" />
 
-    </TableLayout>
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
 
 </LinearLayout>

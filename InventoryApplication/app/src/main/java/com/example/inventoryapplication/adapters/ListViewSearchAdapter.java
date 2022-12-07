@@ -113,16 +113,16 @@ public class ListViewSearchAdapter extends BaseAdapter {
         viewHolder.lv_title_column4.setText(String.valueOf(item.getQuantity()));
 
         // Set background color and text color
-        if(position%2 == 0) {
+/*        if(position%2 == 0) {
             // Set even line
-            convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_LIGHT_BLUE));
+            convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE_GRAY_LIGHT));
             viewHolder.lv_title_column1.setTextColor(Color.BLACK);
             viewHolder.lv_title_column2.setTextColor(Color.BLACK);
             viewHolder.lv_title_column3.setTextColor(Color.BLACK);
             viewHolder.lv_title_column4.setTextColor(Color.BLACK);
         } else {
             // Set odd line
-            convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_WHITE));
+            convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE_GRAY_LIGHT));
             viewHolder.lv_title_column1.setTextColor(Color.BLACK);
             viewHolder.lv_title_column2.setTextColor(Color.BLACK);
             viewHolder.lv_title_column3.setTextColor(Color.BLACK);
@@ -135,7 +135,7 @@ public class ListViewSearchAdapter extends BaseAdapter {
             viewHolder.lv_title_column2.setTypeface(null, Typeface.BOLD);
             viewHolder.lv_title_column3.setTypeface(null, Typeface.BOLD);
             viewHolder.lv_title_column4.setTypeface(null, Typeface.BOLD);
-        }
+        }*/
 
         return convertView;
 

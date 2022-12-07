@@ -99,16 +99,13 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     // #HUYNHQUANGVINH list rfid not found
     Set<String> setRfidNotFound = new HashSet<>();
     SQLiteDatabaseHandler db;
-
     List<HttpPostRfid> listHttp = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
-
         db = new SQLiteDatabaseHandler(this);
         initViews();
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -164,7 +161,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         BluetoothDevice deviceTemp = null;
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-
         if (pairedDevices.size() > 0) {
             // There are paired devices. Get the name and address of each paired device.
             int i=0;
@@ -507,6 +503,9 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         restartListView();
 
     }
+    /**
+     * Function click MenuApp in navigation
+     */
     private void eventClickItemMenuApp() {
         if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
@@ -521,13 +520,16 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             eventDisableButton();
             //eventOpenButton(false);
 
-            showDialogConfirmBack();
+            showDialogConfirmMenuBack();
         } else {
 
             startActivity(new Intent(ScanDataActivity.this, MenuAppActivity.class));
         }
 
     }
+    /**
+     * Function show dialog confirm back to MenuApp
+     */
     private void showDialogConfirmMenuBack(){
         DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "CONFIRM GO TO MENU", Message.MESSAGE_CONFIRM_REGISTER_DATA, new Callable() {
             @Override
@@ -549,22 +551,19 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
 
     private void eventClickBack() {
-        //if (arrDataInList.size() > 0) {
+        if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
-       // } else {
-          //  isKeepScanMagazine = false;
-       // }
-
+        } else {
+            isKeepScanMagazine = false;
+        }
         if (arrDataInList.size() > 0) {
             // Stop scan honeywell
 
             // Disable event onClick
             eventDisableButton();
             //eventOpenButton(false);
-
             showDialogConfirmBack();
         } else {
-
             onBackPressed();
         }
 
@@ -746,10 +745,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-    /**
-     * Function show dialog confirm back
-     */
-
 
     /**
      * Function click button search
@@ -757,7 +752,11 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private void eventCLickSearch() {
         if(!arrDataInList.isEmpty())
             showDialogMessageConfirmSearch();
-        else startActivity(new Intent(ScanDataActivity.this,SearchActivity.class));
+        else{
+            Intent intent=new Intent(ScanDataActivity.this,SearchActivity.class);
+            intent.putExtra("type",Constants.TYPE_TABLE_INVENTORY);
+            startActivity(intent);
+        }
     }
     /**
      * Function click Export
@@ -776,12 +775,45 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         });
         loadFragment(dialogYesNoFragment);
     }
+    /**
+     * Function eventExport
+     */
+    private void eventExportYes(){
+        db.insertAllProducts(arrDataInList);
+        if(!db.getAllProductsbyType("inventory").isEmpty()){
+            showProgressRunUi();
+            String[] header = new String[] {"rfid", "product_name", "quantity", "barcode"};
+            CsvExport.writeData(this, header,"inventory",new Callable(){
+                @Override
+                public void call(boolean result) {
+                    showToast("Export success!!!");
+                    dismissProgress();
+                    showDialogMessageExportYes();
+                }
+            });
+            /*ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
+                @Override
+                public void call(boolean result) {
+                    if(result){
+                        showToast("Exporting Success!!!");
+                        dismissProgress();
+                        showDialogMessageExportYes();
+                    }
+                }
+            });*/
+
+        }
+        else showToast("No data to export!!!");
+    }
+    /**
+     * Function showDialogMessageExport
+     */
     private void showDialogMessageExportYes(){
         DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "EXPORT", Message.MESSAGE_CONFIRM_REMOVE_ADD_DATA, new Callable() {
             @Override
             public void call(boolean result) {
                 if(result==true){
-                    db.deleteAllProductsbyType("inventory");
+                    db.deleteAllProductsbyTypeTable(Constants.TYPE_TABLE_INVENTORY);
                     onBackPressed();
                 }else{
                     dismissProgress();
@@ -822,33 +854,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     // messageText.setGravity(Gravity.CENTER);
 
     // }
-    private void eventExportYes(){
-        db.insertAllProducts(arrDataInList);
-        if(!db.getAllProductsbyType("inventory").isEmpty()){
-            showProgressRunUi();
-            String[] header = new String[] {"rfid", "product_name", "quantity", "barcode"};
-            CsvExport.writeData(this, header,"inventory",new Callable(){
-                @Override
-                public void call(boolean result) {
-                    showToast("Export success!!!");
-                    dismissProgress();
-                    showDialogMessageExportYes();
-                }
-            });
-            /*ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
-                @Override
-                public void call(boolean result) {
-                    if(result){
-                        showToast("Exporting Success!!!");
-                        dismissProgress();
-                        showDialogMessageExportYes();
-                    }
-                }
-            });*/
 
-        }
-        else showToast("No data to export!!!");
-    }
 
     /**
      * loadfragment
@@ -879,8 +885,8 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void call(boolean result) {
                     if(result==true){
-                        actionDeleteAll();
-                        showToast("Exporting Success!!!");
+                        actionDeleteAll(Constants.TYPE_TABLE_INVENTORY);
+                        showToast("Delete Success!!!");
                     }else{
                         dismissProgress();
                     }
@@ -891,7 +897,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             showToast("No any record to delete!!!");
         }
     }
-    private void eventDeleteAll() {
+/*    private void eventDeleteAll() {
 
         if (arrDataInList.size() > 0) {
             //Show message confirm
@@ -923,18 +929,18 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         }
 
 
-    }
+    }*/
 
     /**
      * Action delete all record
      */
-    private void actionDeleteAll() {
+    private void actionDeleteAll(String type) {
         if (!arrDataInList.isEmpty()) {
             setCustomInput.clear();
             setCustomOutput.clear();
             reloadSQLiteData();
             inforProductEntity = new InforProductEntity();
-            //db.deleteAllProductsbyType("inventory");
+            db.deleteAllProductsbyTypeTable(type);
             initListViewScreen();
         }
     }
@@ -993,7 +999,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         }
         inforProductEntity.setBarcodeCD1(bar1);
         inforProductEntity.setBasePrice(cost);
-        inforProductEntity.setTypeProduct("inventory");
+        inforProductEntity.setTypeProduct(Constants.TYPE_TABLE_INVENTORY);
         inforProductEntity.setQuantity(1);
         inforProductEntity.setTaxIncludePrice(tax);
         inforProductEntity.setGoodName(name);
@@ -1027,7 +1033,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     }
     /* private void digestBarcode(String bar_code, int first3character, int money) {
 
-     *//*switch (first3character) {
+     switch (first3character) {
             case Constants.CD1_978:
                 inforProductEntity.setBarcodeCD1(bar_code);
                 inforProductEntity.setBarcodeCD2(Constants.BLANK);
@@ -1039,7 +1045,8 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 inforProductEntity.setBasePrice(money);
                 break;
         }
-        updateCurrentView();*//*
+        updateCurrentView();*/
+    /*
 
         // If first scan
         if (arrDataInList.size() == 0) {

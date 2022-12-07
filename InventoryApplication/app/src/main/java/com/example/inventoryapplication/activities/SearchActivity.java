@@ -3,7 +3,11 @@ package com.example.inventoryapplication.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Gravity;
@@ -20,12 +24,15 @@ import com.example.inventoryapplication.adapters.ListViewSearchAdapter;
 import com.example.inventoryapplication.common.constants.Message;
 import com.example.inventoryapplication.common.entities.InforProductEntity;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
+import com.example.inventoryapplication.fragment.DialogYesNoFragment;
+import com.example.inventoryapplication.interfaces.Callable;
 
 import java.util.LinkedList;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView lvSearchResult;
+    private String typeString = null;
     LinearLayout btn_search;
     ImageView btn_back;
     EditText search_cd1, search_name;
@@ -36,7 +43,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search1);
-
+        Intent intentget=getIntent();
+        Bundle intentbundle=intentget.getExtras();
+        if(intentbundle!=null){
+            typeString=(String)intentbundle.get("type");
+        }
         initView();
     }
 
@@ -52,6 +63,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         btn_search.setOnClickListener(this);
         btn_back.setOnClickListener(this);
+        //intent getstring
+
 
         //Event long press item
         onDeleteSelectedProduct();
@@ -65,7 +78,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long id) {
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(SearchActivity.this);
+                    /*AlertDialog.Builder alertDialog = new AlertDialog.Builder(SearchActivity.this);
                     alertDialog.setMessage(String.format(Message.MESSAGE_CONFIRM_DELETE_RECORD, arrDataInfoProduct.size() - position));
 
                     alertDialog.setCancelable(false);
@@ -92,15 +105,48 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     AlertDialog alert = alertDialog.show();
                     TextView messageText = (TextView) alert.findViewById(android.R.id.message);
                     assert messageText != null;
-                    messageText.setGravity(Gravity.CENTER);
+                    messageText.setGravity(Gravity.CENTER);*/
+
 
                     // Close camera
-
+                showDialogDeleteDecord(position);
 
                 return true;
             }
 
         });
+
+    }
+    /**
+     * Loadfragment
+     **/
+    private void showDialogDeleteDecord(final int position){
+        DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(SearchActivity.this, "DELETE DECORD", Message.MESSAGE_CONFIRM_DELETE_RECORD, new Callable() {
+            @Override
+            public void call(boolean result) {
+                if(result==true){
+                    db.deleteProductbyTypeTable(arrDataInfoProduct.get(position),typeString);
+                    arrDataInfoProduct.remove(position);
+                    restartListView();
+
+                }else{
+
+                }
+            }
+        });
+        loadFragment(dialogYesNoFragment);
+    }
+    private void loadFragment(Fragment fragment){
+        try {
+            System.out.println("loadFragment");
+            FragmentManager fm=getFragmentManager();
+            FragmentTransaction fragmentTransaction=fm.beginTransaction();
+            fragmentTransaction.replace(R.id.linear_fragment,fragment);
+            fragmentTransaction.commit();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
     /**
@@ -120,19 +166,19 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 String bar = search_cd1.getText().toString();
                 String name = search_name.getText().toString();
                 if(!bar.isEmpty()){
-                    for(InforProductEntity i : db.getProductByBarcode(bar)){
+                    for(InforProductEntity i : db.getProductByBarcodeAndType(bar,typeString)){
                         arrDataInfoProduct.add(i);
                     }
                     restartListView();
                 }
                 else if(!name.isEmpty()){
-                    for(InforProductEntity i : db.getProductByName(name)){
+                    for(InforProductEntity i : db.getProductByNameAndType(name,typeString)){
                         arrDataInfoProduct.add(i);
                     }
                     restartListView();
                 }
                 else {
-                    for(InforProductEntity i : db.getAllProducts()){
+                    for(InforProductEntity i : db.getAllProductsbyType(typeString)){
                         arrDataInfoProduct.add(i);
                     }
                     restartListView();

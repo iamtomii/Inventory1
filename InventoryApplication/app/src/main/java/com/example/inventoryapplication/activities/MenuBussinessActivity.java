@@ -48,15 +48,6 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
         btn_inventory.setOnClickListener(this);
         btn_in.setOnClickListener(this);
         btn_out.setOnClickListener(this);
-        if(db.getProductsbyTypeCount("inventory")==0)
-            inventory_number.setText("(0)");
-        else    inventory_number.setText("("+db.getProductsbyTypeCount("inventory")+")");
-        if(db.getProductsbyTypeCount("incoming")==0)
-            incoming_number.setText("(0)");
-        else    incoming_number.setText("("+db.getProductsbyTypeCount("incoming")+")");
-        if(db.getProductsbyTypeCount("outgoing")==0)
-            outgoing_number.setText("(0)");
-        else    outgoing_number.setText("("+db.getProductsbyTypeCount("outgoing")+")");
 
     }
 
@@ -83,6 +74,16 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
+        if(db.getProductsbyTypeCount("inventory")==0)
+            inventory_number.setText("(0)");
+        else    inventory_number.setText("("+db.getProductsbyTypeCount("inventory")+")");
+        if(db.getProductsbyTypeCount("incoming")==0)
+            incoming_number.setText("(0)");
+        else    incoming_number.setText("("+db.getProductsbyTypeCount("incoming")+")");
+        if(db.getProductsbyTypeCount("outgoing")==0)
+            outgoing_number.setText("(0)");
+        else    outgoing_number.setText("("+db.getProductsbyTypeCount("outgoing")+")");
+
     }
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -53,7 +53,7 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_COUNTRY_TABLE = "CREATE TABLE " + TABLE_PRODUCT + "("
                 + ID + " INTEGER  PRIMARY KEY AUTOINCREMENT,"
-                + RFID_CODE + " TEXT PRIMARY KEY,"
+                + RFID_CODE + " TEXT,"
                 + GOOD_NAME + " TEXT,"
                 + TYPE_TABLE + " TEXT,"
                 + DATE + " TEXT,"
@@ -219,7 +219,69 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 InforProductEntity productEntity = new InforProductEntity();
+                productEntity.setId(Integer.parseInt(cursor.getString(0)));
+                productEntity.setRfidCode(cursor.getString(1));
+                productEntity.setGoodName(cursor.getString(2));
+                productEntity.setTypeProduct(cursor.getString(3));
+                productEntity.setDate(cursor.getString(4));
+                productEntity.setInventoryName(cursor.getString(5));
+                productEntity.setSerial(cursor.getString(6));
+                productEntity.setBarcodeCD1(cursor.getString(7));
+                productEntity.setBarcodeCD2(cursor.getString(8));
+                productEntity.setBasePrice(Integer.parseInt(cursor.getString(9)));
+                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(10)));
+                productEntity.setQuantity(Integer.parseInt(cursor.getString(11)));
+                // Adding country to list
+                pList.add(productEntity);
+            } while (cursor.moveToNext());
+        }
 
+        // return country list
+        return pList;
+    }
+    public List<InforProductEntity> getProductByNameAndType(String name, String type) {
+        List<InforProductEntity> pList = new ArrayList<InforProductEntity>();
+        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT +" WHERE " + GOOD_NAME + " LIKE ? AND " + TYPE_TABLE + " LIKE ?";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery,  new String[] { String.valueOf("%"+name+"%"),String.valueOf("%"+type+"%") });
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                InforProductEntity productEntity = new InforProductEntity();
+                productEntity.setId(Integer.parseInt(cursor.getString(0)));
+                productEntity.setRfidCode(cursor.getString(1));
+                productEntity.setGoodName(cursor.getString(2));
+                productEntity.setTypeProduct(cursor.getString(3));
+                productEntity.setDate(cursor.getString(4));
+                productEntity.setInventoryName(cursor.getString(5));
+                productEntity.setSerial(cursor.getString(6));
+                productEntity.setBarcodeCD1(cursor.getString(7));
+                productEntity.setBarcodeCD2(cursor.getString(8));
+                productEntity.setBasePrice(Integer.parseInt(cursor.getString(9)));
+                productEntity.setTaxIncludePrice(Integer.parseInt(cursor.getString(10)));
+                productEntity.setQuantity(Integer.parseInt(cursor.getString(11)));
+                // Adding country to list
+                pList.add(productEntity);
+            } while (cursor.moveToNext());
+        }
+
+        // return country list
+        return pList;
+    }
+
+    // Getting single country
+    public List<InforProductEntity> getProductByBarcode(String barcode) {
+        List<InforProductEntity> pList = new ArrayList<InforProductEntity>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_PRODUCT, new String[] { ID, RFID_CODE,
+                        GOOD_NAME, TYPE_TABLE,DATE,IVT_NAME,SERIAL_CODE,BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, BARCODE_01 + " like ?",
+                new String[] { String.valueOf("%"+barcode+"%") }, null, null, null, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                InforProductEntity productEntity = new InforProductEntity();
                 productEntity.setRfidCode(cursor.getString(0));
                 productEntity.setGoodName(cursor.getString(1));
                 productEntity.setTypeProduct(cursor.getString(2));
@@ -239,15 +301,11 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         // return country list
         return pList;
     }
-
-    // Getting single country
-    public List<InforProductEntity> getProductByBarcode(String barcode) {
+    public List<InforProductEntity> getProductByBarcodeAndType(String barcode,String type) {
         List<InforProductEntity> pList = new ArrayList<InforProductEntity>();
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_PRODUCT, new String[] { ID, RFID_CODE,
-                        GOOD_NAME, TYPE_TABLE,DATE,IVT_NAME,SERIAL_CODE,BARCODE_01, BARCODE_02, BASE_PRICE, TAX_INCLUDE_PRICE, QUANTITY }, BARCODE_01 + " like ?",
-                new String[] { String.valueOf("%"+barcode+"%") }, null, null, null, null);
+        String selectQuery="SELECT * FROM " + TABLE_PRODUCT + " WHERE " + BARCODE_01 + " LIKE ? AND " + TYPE_TABLE +" LIKE ? ";
+        Cursor cursor=db.rawQuery(selectQuery,new String[]{String.valueOf("%"+barcode+"%"),String.valueOf("%"+type+"%")});
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
@@ -395,6 +453,12 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(product.getRfidCode()) });
         db.close();
     }
+    public void deleteProductbyTypeTable(InforProductEntity product,String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PRODUCT, RFID_CODE + " like ? AND "+ TYPE_TABLE + " like ? ",
+                new String[] { String.valueOf(product.getRfidCode()),String.valueOf("%"+type+"%") });
+        db.close();
+    }
 
 
     // Deleting all countries
@@ -403,7 +467,7 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         db.delete(TABLE_PRODUCT,null,null);
         db.close();
     }
-    public void deleteAllProductsbyType(String type) {
+    public void deleteAllProductsbyTypeTable(String type) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PRODUCT, TYPE_TABLE + " like ?",
                 new String[] { String.valueOf("%"+type+"%") });

@@ -50,7 +50,7 @@
                         android:maxLength="13"
                         android:paddingStart="@dimen/size5dp"
                         android:paddingEnd="@dimen/size5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/BlueGray"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </TableRow>
@@ -78,7 +78,7 @@
                         android:inputType="text"
                         android:paddingStart="@dimen/size5dp"
                         android:paddingEnd="@dimen/size5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/BlueGray"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </TableRow>

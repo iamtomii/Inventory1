@@ -38,13 +38,18 @@ public class Constants {
     public static final String BACKGROUND_COLOR_BLUE = "#2750F6";
     public static final String BACKGROUND_COLOR_WHITE = "#FFFFFF";
     public static final String BACKGROUND_COLOR_LIGHT_BLUE = "#EBEFFF";
-
+    public static final String BACKGROUND_COLOR_BLUE_GRAY_LIGHT="#d8f3ff";
+    public static final String TEXT_BLUE_DARK_GRAY="#d8f3ff";
 
     /**
      * Column Rfid (new)
      */
     public static final String COLUMN_RFID = "rfid";
-
+    /**
+     * Title Fragment
+     */
+    public static final String TITLE_FRAGMENT_INCOMING="New Incoming";
+    public static final String TITLE_FRAGMENT_OUTGOING="New Outgoing";
 
     /**
      * Information table register product
@@ -69,6 +74,12 @@ public class Constants {
     public static final String BASE_UNIT_PRICE = "li_price";
     public static final String TAX_PRICE = "li_include_price";
     public static final String BUSINESS_DIVISION = "li_work_type";
+    /**
+     * type table
+     */
+    public static final String TYPE_TABLE_INVENTORY="inventory";
+    public static final String TYPE_TABLE_INCOMING="incoming";
+    public static final String TYPE_TABLE_OUTGOING="outgoing";
 
     /**
      * Barcode
@@ -121,5 +132,7 @@ public class Constants {
     public static final String STT_CODE_Bad_Gateway = "502";
     public static final String STT_CODE_Service_Unavailable = "503";
     public static final String STT_CODE_Gateway_Timeout = "504";
+    //incoming and outgoing
+    public static final String CONFIG_INV_NAME="Company";
     //#endregion
 }

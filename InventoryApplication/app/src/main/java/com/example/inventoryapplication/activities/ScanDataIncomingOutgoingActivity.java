@@ -67,7 +67,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class ScanDataInActivity extends AppCompatActivity implements View.OnClickListener, HttpRfidResponse {
+public class ScanDataIncomingOutgoingActivity extends AppCompatActivity implements View.OnClickListener, HttpRfidResponse {
     // #ADD
     // #ADD_ERROR
     Button btn_error;
@@ -146,7 +146,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         new Thread(new Runnable() {
             @Override
             public void run() {
-                connectThread.connect(bluetoothDeviceConnected2(), ScanDataInActivity.this, new Callable() {
+                connectThread.connect(bluetoothDeviceConnected2(), ScanDataIncomingOutgoingActivity.this, new Callable() {
                     @Override
                     public void call(boolean result) {
                         showToast("Starting...");
@@ -290,7 +290,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void run() {
                 // Update list view
-                ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataInActivity.this,
+                ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataIncomingOutgoingActivity.this,
                         arrDataInList);
                 lvProduct.setAdapter(adapterBook);
 
@@ -378,18 +378,18 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
                 switch (id)
                 {
                     case R.id.nav_account:
-                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataIncomingOutgoingActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_menu_app:
                         eventClickItemMenuApp();
                     case R.id.nav_manager:
                         drawer_layout.closeDrawer((GravityCompat.START));
                         eventClickBack();
                     case R.id.nav_setting:
-                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataIncomingOutgoingActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_themes:
-                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataIncomingOutgoingActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_logout:
-                        Toast.makeText(ScanDataInActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(ScanDataIncomingOutgoingActivity.this,"coming soon!",Toast.LENGTH_SHORT).show();break;
                     default:
                         return true;
                 }
@@ -495,7 +495,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(ScanDataInActivity.this,s+"",Toast.LENGTH_LONG).show();
+                Toast.makeText(ScanDataIncomingOutgoingActivity.this,s+"",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -505,7 +505,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
     }
     public void onBackPressedFragment() {
         super.onBackPressed();
-        Intent i = new Intent(ScanDataInActivity.this, MenuBussinessActivity.class);
+        Intent i = new Intent(ScanDataIncomingOutgoingActivity.this, MenuBussinessActivity.class);
         startActivity(i);
         //finish();
     }
@@ -528,6 +528,9 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         restartListView();
 
     }
+    /**
+     * Function click MenuApp in navigation
+     */
     private void eventClickItemMenuApp() {
         if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
@@ -542,13 +545,16 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
             eventDisableButton();
             //eventOpenButton(false);
 
-            showDialogConfirmBack();
+            showDialogConfirmMenuBack();
         } else {
 
-            startActivity(new Intent(ScanDataInActivity.this, MenuAppActivity.class));
+            startActivity(new Intent(ScanDataIncomingOutgoingActivity.this, MenuAppActivity.class));
         }
 
     }
+    /**
+     * Function show dialog confirm back to MenuApp
+     */
     private void showDialogConfirmMenuBack(){
         DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "CONFIRM GO TO MENU", Message.MESSAGE_CONFIRM_REGISTER_DATA, new Callable() {
             @Override
@@ -556,9 +562,9 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
                 if(result==true){
                     db.insertAllProducts(arrDataInList);
                     //eventDisconnectDevice();
-                    startActivity(new Intent(ScanDataInActivity.this, MenuAppActivity.class));
+                    startActivity(new Intent(ScanDataIncomingOutgoingActivity.this, MenuAppActivity.class));
                 }else{
-                    startActivity(new Intent(ScanDataInActivity.this, MenuAppActivity.class));
+                    startActivity(new Intent(ScanDataIncomingOutgoingActivity.this, MenuAppActivity.class));
                 }
             }
         });
@@ -619,7 +625,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
             IS_SHOW_DIALOG_LIMIT=1;
             PAUSE_DEVICE = 1;
             //Show message confirm
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataInActivity.this);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataIncomingOutgoingActivity.this);
             alertDialog.setMessage(String.format(Message.MESSAGE_CONFIRM_OVER_DATA, Constants.LIMIT_ONCE));
 
             alertDialog.setCancelable(false);
@@ -670,7 +676,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
     private void showDialogMessageConfirmSearch() {
 
         //Show message confirm
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataInActivity.this);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataIncomingOutgoingActivity.this);
         alertDialog.setMessage(Message.MESSAGE_CONFIRM_REGISTER_DATA);
 
         alertDialog.setCancelable(false);
@@ -778,7 +784,11 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
     private void eventCLickSearch() {
         if(!arrDataInList.isEmpty())
             showDialogMessageConfirmSearch();
-        else startActivity(new Intent(ScanDataInActivity.this,SearchActivity.class));
+        else {
+            Intent intent=new Intent(ScanDataIncomingOutgoingActivity.this,SearchActivity.class);
+            intent.putExtra("type",typeproduct);
+            startActivity(intent);
+        }
     }
     /**
      * Function click Export
@@ -797,12 +807,15 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         });
         loadFragment(dialogYesNoFragment);
     }
+    /**
+     * Function showDialogMessageExport
+     */
     private void showDialogMessageExportYes(){
         DialogYesNoFragment dialogYesNoFragment=new DialogYesNoFragment(this, "EXPORT", Message.MESSAGE_CONFIRM_REMOVE_ADD_DATA, new Callable() {
             @Override
             public void call(boolean result) {
                 if(result==true){
-                    db.deleteAllProductsbyType(typeproduct);
+                    db.deleteAllProductsbyTypeTable(typeproduct);
                     onBackPressedFragment();
                 }else{
                     dismissProgress();
@@ -812,6 +825,37 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         });
         loadFragment(dialogYesNoFragment);
     }
+    /**
+     * Function eventExport
+     */
+    private void eventExportYes(){
+        db.insertAllProducts(arrDataInList);
+        if(!db.getAllProductsbyType(typeproduct).isEmpty()){
+            showProgressRunUi();
+            String[] header = new String[] {"serial","inv_name","rfid", "product_name", "quantity", "barcode"};
+            CsvExport.writeData(this, header,typeproduct,new Callable() {
+                @Override
+                public void call(boolean result) {
+                    showToast("Export success!!!");
+                    dismissProgress();
+                    showDialogMessageExportYes();
+                }
+            });
+            /*ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
+                @Override
+                public void call(boolean result) {
+                    if(result){
+                        showToast("Exporting Success!!!");
+                        dismissProgress();
+                        showDialogMessageExportYes();
+                    }
+                }
+            });*/
+
+        }
+        else showToast("No data to export!!!");
+    }
+
     //private void showDialogMessageExport() {
 
     //Show message confirm
@@ -844,33 +888,6 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
     // messageText.setGravity(Gravity.CENTER);
 
     // }
-    private void eventExportYes(){
-        db.insertAllProducts(arrDataInList);
-        if(!db.getAllProductsbyType(typeproduct).isEmpty()){
-            showProgressRunUi();
-            String[] header = new String[] {"serial","inv_name","rfid", "product_name", "quantity", "barcode"};
-            CsvExport.writeData(this, header,typeproduct,new Callable() {
-                @Override
-                public void call(boolean result) {
-                    showToast("Export success!!!");
-                    dismissProgress();
-                    showDialogMessageExportYes();
-                }
-            });
-            /*ExcelExporter.exportObj(setRfidNotFound, ScanDataActivity.this, new Callable() {
-                @Override
-                public void call(boolean result) {
-                    if(result){
-                        showToast("Exporting Success!!!");
-                        dismissProgress();
-                        showDialogMessageExportYes();
-                    }
-                }
-            });*/
-
-        }
-        else showToast("No data to export!!!");
-    }
 
     /**
      * loadfragment
@@ -917,7 +934,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
 
         if (arrDataInList.size() > 0) {
             //Show message confirm
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataInActivity.this);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ScanDataIncomingOutgoingActivity.this);
             alertDialog.setMessage(Message.MESSAGE_CONFIRM_DELETE_ALL);
 
             alertDialog.setCancelable(false);
@@ -956,7 +973,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
             setCustomOutput.clear();
             reloadSQLiteData();
             inforProductEntity = new InforProductEntity();
-            //db.deleteAllProducts();
+            db.deleteAllProductsbyTypeTable(typeproduct);
             initListViewScreen();
         }
     }
@@ -1163,7 +1180,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(ScanDataInActivity.this, Constants.INVALID_BARCODE, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScanDataIncomingOutgoingActivity.this, Constants.INVALID_BARCODE, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -1198,7 +1215,7 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
                 //eventOpenButton(false);
 
                 AlertDialog.Builder dialog =
-                        new AlertDialog.Builder(ScanDataInActivity.this);
+                        new AlertDialog.Builder(ScanDataIncomingOutgoingActivity.this);
                 dialog
                         .setMessage(Message.NOTIFICATION_BARCODE_INVALID)
                         .setCancelable(false)
@@ -1425,11 +1442,11 @@ public class ScanDataInActivity extends AppCompatActivity implements View.OnClic
                             //showDialog(err.get(0).toString(), err);
                         }
                     } else {
-                        SupModRfidCommon.ToastMessage(ScanDataInActivity.this, jsonObject.getString(Constants.KEY_MESSAGE)).show();
+                        SupModRfidCommon.ToastMessage(ScanDataIncomingOutgoingActivity.this, jsonObject.getString(Constants.KEY_MESSAGE)).show();
                     }
                 }
             } else {
-                SupModRfidCommon.showNotifyErrorDialog(ScanDataInActivity.this).show();
+                SupModRfidCommon.showNotifyErrorDialog(ScanDataIncomingOutgoingActivity.this).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();

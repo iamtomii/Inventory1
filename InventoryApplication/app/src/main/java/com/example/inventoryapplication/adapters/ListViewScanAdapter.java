@@ -128,9 +128,9 @@ public class ListViewScanAdapter extends BaseAdapter implements Filterable {
 
 
         // Set background color and text color
-        if (position == 0) {
+/*        if (position == 0) {
             // Set for first line in list view
-            convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE));
+            convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE_GRAY_LIGHT));
             viewHolder.lv_title_column1.setTextColor(Color.BLACK);
             viewHolder.lv_title_column2.setTextColor(Color.BLACK);
             viewHolder.lv_title_column3.setTextColor(Color.BLACK);
@@ -139,14 +139,14 @@ public class ListViewScanAdapter extends BaseAdapter implements Filterable {
             // Set background from the second line in list view
             if (position % 2 == 0) {
                 // Set even line
-                convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_LIGHT_BLUE));
+                convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE_GRAY_LIGHT));
                 viewHolder.lv_title_column1.setTextColor(Color.BLACK);
                 viewHolder.lv_title_column2.setTextColor(Color.BLACK);
                 viewHolder.lv_title_column3.setTextColor(Color.BLACK);
                 viewHolder.lv_title_column4.setTextColor(Color.BLACK);
             } else {
                 // Set odd line
-                convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_WHITE));
+                convertView.setBackgroundColor(Color.parseColor(Constants.BACKGROUND_COLOR_BLUE_GRAY_LIGHT));
                 viewHolder.lv_title_column1.setTextColor(Color.BLACK);
                 viewHolder.lv_title_column2.setTextColor(Color.BLACK);
                 viewHolder.lv_title_column3.setTextColor(Color.BLACK);
@@ -154,13 +154,13 @@ public class ListViewScanAdapter extends BaseAdapter implements Filterable {
             }
 
             // #HUYNHQUANGVINH change text color column quantity when is exist rfid code
-            if (item.getRfidCode() != null && !item.getRfidCode().equals("")) {
+            *//*if (item.getRfidCode() != null && !item.getRfidCode().equals("")) {
                 viewHolder.lv_title_column1.setTypeface(null, Typeface.BOLD);
                 viewHolder.lv_title_column2.setTypeface(null, Typeface.BOLD);
                 viewHolder.lv_title_column3.setTypeface(null, Typeface.BOLD);
                 viewHolder.lv_title_column4.setTypeface(null, Typeface.BOLD);
-            }
-        }
+            }*//*
+        }*/
         return convertView;
 
     }

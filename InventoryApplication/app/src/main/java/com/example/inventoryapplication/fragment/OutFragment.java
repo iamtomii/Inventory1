@@ -1,7 +1,6 @@
 package com.example.inventoryapplication.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.inventoryapplication.R;
-import com.example.inventoryapplication.activities.ScanDataInActivity;
+import com.example.inventoryapplication.activities.ScanDataIncomingOutgoingActivity;
+import com.example.inventoryapplication.common.constants.Constants;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
 import com.example.inventoryapplication.interfaces.Callable;
 
@@ -29,6 +30,7 @@ public class OutFragment extends android.app.Fragment implements View.OnClickLis
     private ImageView btn_save,btn_back,btn_scan_good;
     private Date currentTime;
     private EditText edt_serial, edt_date,edt_ivt_name,edt_supplier,edt_cmt;
+    private TextView title_fragment;
     SQLiteDatabaseHandler db;
 
 
@@ -36,7 +38,7 @@ public class OutFragment extends android.app.Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_in, container, false);
+        View view=inflater.inflate(R.layout.fragment_incoming_outgoing, container, false);
 
         initView(view);
         return view;
@@ -52,6 +54,7 @@ public class OutFragment extends android.app.Fragment implements View.OnClickLis
 
     private void initView(View view) {
         db = new SQLiteDatabaseHandler(getActivity().getApplication());
+        title_fragment=(TextView) view.findViewById(R.id.title_fragment);
         btn_save=(ImageView) view.findViewById(R.id.btn_save_data);
         btn_back=(ImageView) view.findViewById(R.id.btn_back);
         edt_serial=(EditText) view.findViewById(R.id.edt_serial);
@@ -60,20 +63,21 @@ public class OutFragment extends android.app.Fragment implements View.OnClickLis
         edt_supplier=(EditText) view.findViewById(R.id.edt_supplier);
         edt_cmt=(EditText) view.findViewById(R.id.edt_cmt);
         btn_scan_good=(ImageView) view.findViewById(R.id.btn_scan_good);
+        title_fragment.setText(Constants.TITLE_FRAGMENT_OUTGOING);
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
         String  currentTime= df.format(Calendar.getInstance().getTime());
         String serialdate="";
         for (String w : currentTime.split("/")) {
             serialdate+=w;
         }
         Integer serialNumber;
-        if(db.getProductsbyTypeCount("outgoing")==0)
+        if(db.getProductsbyTypeCount(Constants.TYPE_TABLE_OUTGOING)==0)
             serialNumber=1;
-        else    serialNumber= Integer.valueOf(db.getProductsbyTypeCount("outgoing")+"")+1;
+        else    serialNumber= Integer.valueOf(db.getProductsbyTypeCount(Constants.TYPE_TABLE_OUTGOING)+"")+1;
 
         edt_serial.setText("1"+serialdate+serialNumber);
         edt_date.setText(currentTime);
+        edt_ivt_name.setText(Constants.CONFIG_INV_NAME);
         btn_scan_good.setOnClickListener(this);
         btn_back.setOnClickListener(this);
     }
@@ -87,9 +91,9 @@ public class OutFragment extends android.app.Fragment implements View.OnClickLis
                 String serial=edt_serial.getText().toString();
                 String ivt_name=edt_ivt_name.getText().toString();
                 String date=edt_date.getText().toString();
-                Intent intent = new Intent(getActivity().getApplication(), ScanDataInActivity.class);
+                Intent intent = new Intent(getActivity().getApplication(), ScanDataIncomingOutgoingActivity.class);
                 Bundle bundle=new Bundle();
-                bundle.putString("typeproduct","outgoing");
+                bundle.putString("typeproduct",Constants.TITLE_FRAGMENT_OUTGOING);
                 bundle.putString("serial",serial);
                 bundle.putString("ivt_name",ivt_name);
                 bundle.putString("date",date);
