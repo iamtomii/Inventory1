@@ -113,7 +113,6 @@ public class HttpPostRfid extends AsyncTask<String, String, String> {
     private JSONObject setParams(String... params) {
 
         Log.d("LIST_RFID", params[2]);
-
         JSONObject jsonObject = new JSONObject();
 
         try {

@@ -57,7 +57,7 @@ public class CsvExport {
         if(header.length==4){
             file_name="/inventory_data";
             for(InforProductEntity p : db.getAllProductsbyType("inventory")){
-                String[] row = new String[]{p.getRfidCode(), p.getGoodName(),p.getQuantity()+"",p.getBarcodeCD1()};
+                String[] row = new String[]{p.getRfidCode(), p.getGoodName(), String.valueOf(p.getQuantity()),p.getBarcodeCD1()};
                 csvData.add(row);
             }
         }else {
@@ -65,14 +65,14 @@ public class CsvExport {
                 case "incoming":
                     file_name="/incoming_data";
                     for (InforProductEntity p : db.getAllProductsbyType("incoming")) {
-                        String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), p.getQuantity() + "", p.getBarcodeCD1()};
+                        String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), String.valueOf(p.getQuantity()), p.getBarcodeCD1()};
                         csvData.add(row);
                     }
                     break;
                 case "outgoing":
                     file_name="/outgoing_data";
                     for (InforProductEntity p : db.getAllProductsbyType("outgoing")) {
-                    String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), p.getQuantity() + "", p.getBarcodeCD1()};
+                    String[] row = new String[]{p.getSerial(), p.getInventoryName(), p.getRfidCode(), p.getGoodName(), String.valueOf(p.getQuantity()), p.getBarcodeCD1()};
                     csvData.add(row);
                 }
                     break;

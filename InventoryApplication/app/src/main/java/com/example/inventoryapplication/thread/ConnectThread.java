@@ -114,7 +114,10 @@ public class ConnectThread extends Thread {
                                     // bug1
                                     if (jsonArray.length() != 0) {
                                         Log.d("data_arr", jsonArray.toString());
-                                        new HttpPostRfid(mContext).execute(Config.CODE_LOGIN, Config.HTTP_SERVER_SHOP+Config.API_RFID_TO_JAN, jsonArray.toString());
+                                        //new HttpPostRfid(mContext).execute(Config.CODE_LOGIN, Config.HTTP_SERVER_SHOP+Config.API_RFID_TO_JAN, jsonArray.toString());
+                                        new HttpPostRfid(mContext).execute(Config.CODE_LOGIN,"http://192.168.1.140:8015/inventory_controller/product/get_quant", jsonArray.toString());
+                                        //new HttpRegister(mContext).execute(Config.CODE_LOGIN, Config.HTTP_SEVER_ODOO+Config.API_ODOO, jsonArray.toString());
+
                                       /*  for(int i =0;i<jsonArray.length();i++) {
                                             String item = jsonArray.getString(i);
                                             new HttpRegister(mContext).execute(Config.CODE_LOGIN, Config.HTTP_SERVER_SHOP + "/api/v1/insert_rfid_master", item);

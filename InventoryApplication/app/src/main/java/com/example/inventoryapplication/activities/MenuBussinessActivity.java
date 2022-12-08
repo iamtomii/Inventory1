@@ -23,7 +23,7 @@ import com.example.inventoryapplication.fragment.OutFragment;
 import com.example.inventoryapplication.interfaces.Callable;
 
 public class MenuBussinessActivity extends AppCompatActivity implements View.OnClickListener {
-    ImageButton btn_inventory,btn_in,btn_out,btn_setting;
+    ImageButton btn_inventory,btn_in,btn_out,btn_export;
     ImageView btn_back_menu;
     SQLiteDatabaseHandler db;
     TextView inventory_number,incoming_number,outgoing_number;
@@ -44,6 +44,7 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
         outgoing_number = (TextView) findViewById(R.id.outgoing_number);
         btn_in=(ImageButton) findViewById(R.id.btn_in);
         btn_out=(ImageButton) findViewById(R.id.btn_out);
+        btn_export=(ImageButton) findViewById(R.id.btn_export);
         btn_back_menu.setOnClickListener(this);
         btn_inventory.setOnClickListener(this);
         btn_in.setOnClickListener(this);
@@ -66,6 +67,7 @@ public class MenuBussinessActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_back_menu:
                 startActivity(new Intent(MenuBussinessActivity.this, MenuAppActivity.class));
                 break;
+            case R.id.btn_export:
         }
     }
 

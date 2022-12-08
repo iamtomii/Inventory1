@@ -45,7 +45,6 @@ import com.example.inventoryapplication.common.constants.Constants;
 import com.example.inventoryapplication.common.constants.Message;
 import com.example.inventoryapplication.common.entities.InforProductEntity;
 import com.example.inventoryapplication.common.function.CsvExport;
-import com.example.inventoryapplication.common.function.ExcelExporter;
 import com.example.inventoryapplication.common.function.SupModRfidCommon;
 import com.example.inventoryapplication.database.SQLiteDatabaseHandler;
 import com.example.inventoryapplication.fragment.DialogYesNoFragment;
@@ -290,7 +289,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                 ListViewScanAdapter adapterBook = new ListViewScanAdapter(ScanDataActivity.this,
                         arrDataInList);
                 lvProduct.setAdapter(adapterBook);
-
                 // Show total number and price
                 callTotalNumberAndPrice();
 
@@ -308,7 +306,6 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     private void updateCurrentView() {
 
         arrDataInList.add(0, inforProductEntity);
-
         inforProductEntity = new InforProductEntity();
 
         // Insert current record to database
@@ -507,11 +504,11 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      * Function click MenuApp in navigation
      */
     private void eventClickItemMenuApp() {
-        if (arrDataInList.size() > 0) {
+        /*if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
         } else {
             isKeepScanMagazine = false;
-        }
+        }*/
 
         if (arrDataInList.size() > 0) {
             // Stop scan honeywell
@@ -551,11 +548,11 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
      */
 
     private void eventClickBack() {
-        if (arrDataInList.size() > 0) {
+        /*if (arrDataInList.size() > 0) {
             isKeepScanMagazine = checkOldBarcode();
         } else {
             isKeepScanMagazine = false;
-        }
+        }*/
         if (arrDataInList.size() > 0) {
             // Stop scan honeywell
 
@@ -783,7 +780,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         if(!db.getAllProductsbyType("inventory").isEmpty()){
             showProgressRunUi();
             String[] header = new String[] {"rfid", "product_name", "quantity", "barcode"};
-            CsvExport.writeData(this, header,"inventory",new Callable(){
+            CsvExport.writeData(this, header,Constants.TYPE_TABLE_INVENTORY,new Callable(){
                 @Override
                 public void call(boolean result) {
                     showToast("Export success!!!");
@@ -984,8 +981,8 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         int tax = 0;
         try {
             bar1 = obj.getString(Constants.KEY_JANCODE_1);
-            if(!obj.getString(Constants.KEY_TAX).equals("null"))
-                bar2 = obj.getString(Constants.KEY_JANCODE_2);
+/*            if(!obj.getString(Constants.KEY_TAX).equals("null"))
+                bar2 = obj.getString(Constants.KEY_JANCODE_2);*/
             name = obj.getString(Constants.KEY_GOOD_NAME);
             if(!obj.getString(Constants.KEY_TAX).equals("null"))
                 tax = obj.getInt(Constants.KEY_TAX);
@@ -1018,15 +1015,15 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
         if(strBarcode.isEmpty()){
             return;
         }
-        int first3character = Integer.parseInt(strBarcode.substring(0, 3));
+        //int first3character = Integer.parseInt(strBarcode.substring(0,3));
         int price = cost;
 
-        digestBarcode(strBarcode, first3character, price);
+        digestBarcode(strBarcode,price);
     }
     /**
      * Digest type of barcode (magazine, japan magazine, others)
      */
-    private void digestBarcode(String bar_code, int first3character, int money) {
+    private void digestBarcode(String bar_code,int money) {
         addOtherBarcode(bar_code);
 
 
@@ -1314,7 +1311,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Check old barcode is finish or not
      */
-    private boolean checkOldBarcode() {
+   /* private boolean checkOldBarcode() {
 
         // SA-204 短縮JANをスキャンすると「スキャンしたバーコードが不正です。」と表示される。 - ADD START
         if (arrDataInList.size() == 0) {
@@ -1324,15 +1321,15 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
 
         String strBarcode1 = arrDataInList.get(0).getBarcodeCD1();
         String strBarcode2 = arrDataInList.get(0).getBarcodeCD2();
-        int intBarcode1_3Character = 0;
-        int intBarcode2_3Character = 0;
+        String intBarcode1_3Character;
+        String intBarcode2_3Character;
 
         if (!Constants.BLANK.equals(strBarcode1) && strBarcode1 != null) {
-            intBarcode1_3Character = Integer.parseInt(strBarcode1.substring(0, 3));
+            intBarcode1_3Character = strBarcode1.substring(0, 3);
         }
 
         if (!Constants.BLANK.equals(strBarcode2) && strBarcode2 != null) {
-            intBarcode2_3Character = Integer.parseInt(strBarcode2.substring(0, 3));
+            intBarcode2_3Character = strBarcode2.substring(0, 3);
         }
 
         if (intBarcode2_3Character == Constants.CD2_191 || intBarcode2_3Character == Constants.CD2_192) {
@@ -1348,7 +1345,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             return true;
         }
         return false;
-    }
+    }*/
 
     @Override
     public void progressRfidFinish(String output, int typeRequestApi, String fileName) {
@@ -1365,18 +1362,44 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
             System.out.println("KKKS: "+output);
             JSONObject jsonObject = new JSONObject(output);
             if (SupModRfidCommon.isStatusHttpOk(output)) {
+                //if (jsonObject.getString(Constants.KEY_CODE).equals(Constants.VALUE_CODE_OK)) {
                 if (jsonObject.getString(Constants.KEY_CODE).equals(Constants.VALUE_CODE_OK)) {
                     //setDataEntity(jsonObject.getJSONArray(Constants.KEY_DATA));
+                    //JSONArray jArray = jsonObject.getJSONArray(Constants.KEY_DATA);
                     JSONArray jArray = jsonObject.getJSONArray(Constants.KEY_DATA);
-                    for(int i= 0 ; i < jArray.length();i++){
-                        JSONObject obj = jArray.getJSONObject(i);
-                        String stringRfid= obj.getString(Constants.KEY_RFID);
+                    //for(int i= 0 ; i < jArray.length();i++){
+                        JSONArray jArray1 = jArray.getJSONArray(0);
+                        /*String stringRfid= obj.getString(Constants.KEY_RFID);
                         // #MARK_2
                         if(setCustomOutput.add(stringRfid)){
                             setDataEntity(obj);
+                        }*/
+                        for (int j=0;j<jArray1.length();j++){
+                            JSONObject obj2 = jArray1.getJSONObject(j);
+                            String stringRfid= obj2.getString(Constants.KEY_RFID);
+                            // #MARK_2
+                            if(setCustomOutput.add(stringRfid)){
+
+                                setDataEntity(obj2);
+                            }
                         }
+
+                    JSONArray err = jArray.getJSONArray(1);
+                    if (err != null) {
+                        for (int i = 0; i < err.length(); i++) {
+                            // #MARK_4
+                            setRfidNotFound.add(err.get(i).toString());
+                            // #ADD_ERROR
+                            if(btn_error.getVisibility()==View.INVISIBLE)
+                                btn_error.setVisibility(View.VISIBLE);
+                        }
+
+                        total_error.setText(MessageFormat.format("{0} : {1}", getText(R.string.total_error), setRfidNotFound.size()+""));
+                        //btConnect.removeRfidWrong(setRfidNotFound);
+                        //showDialog(err.get(0).toString(), err);
                     }
-                } else {
+                    //}
+                }  /*else{
                     if (jsonObject.getString(Constants.KEY_CODE).equals(Constants.VALUE_CODE_RFID_ERROR)) {
                         try{
                             //setDataEntity(jsonObject.getJSONArray(Constants.KEY_DATA));
@@ -1409,7 +1432,7 @@ public class ScanDataActivity extends AppCompatActivity implements View.OnClickL
                     } else {
                         SupModRfidCommon.ToastMessage(ScanDataActivity.this, jsonObject.getString(Constants.KEY_MESSAGE)).show();
                     }
-                }
+                }*/
             } else {
                 SupModRfidCommon.showNotifyErrorDialog(ScanDataActivity.this).show();
             }

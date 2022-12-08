@@ -215,7 +215,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageButton
-                    android:id="@+id/btn_setting"
+                    android:id="@+id/btn_export"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/btn_manager_shape"

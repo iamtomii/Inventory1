@@ -105,7 +105,7 @@ public class MenuAppActivity extends AppCompatActivity implements View.OnClickLi
                 Intent intent = new Intent(MenuAppActivity.this, MenuBussinessActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btn_setting:
+            case R.id.btn_export:
                 startActivity(new Intent(MenuAppActivity.this, SettingMacActivity.class));
                 break;
         }

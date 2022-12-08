@@ -58,7 +58,7 @@
             android:layout_height="@dimen/size14dp"
             android:background="@color/colorWhiteLight" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_setting"
+            android:id="@+id/btn_export"
             android:layout_width="match_parent"
             android:layout_height="85sp"
             android:layout_marginStart="@dimen/size20dp"

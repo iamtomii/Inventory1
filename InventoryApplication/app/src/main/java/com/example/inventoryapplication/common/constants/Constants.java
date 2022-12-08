@@ -10,9 +10,12 @@ public class Constants {
     public static String CONFIG_PORT = "8080";
     public static String CONFIG_POWER_LEVEL = "33";
 
-    public static final String KEY_GOOD_NAME = "drgm_goods_name";
-    public static final String KEY_COST = "drgm_cost_price";
-    public static final String KEY_TAX = "drgm_price_tax_off";
+    //public static final String KEY_GOOD_NAME = "drgm_goods_name";
+    public static final String KEY_GOOD_NAME = "Product_name";
+    //public static final String KEY_COST = "drgm_cost_price";
+    public static final String KEY_COST = "Price";
+    //public static final String KEY_TAX = "drgm_price_tax_off";
+    public static final String KEY_TAX = "Expected_quantity";
     public static int POWER_LEVEL_INVENTORY_REGISTRATION_VJ = 16;
 
     // Format code CD1 & CD@
@@ -97,20 +100,26 @@ public class Constants {
      * Key Json API Module RFID
      */
     /* key json common */
-    public static final String KEY_CODE = "code";
-    public static final String KEY_DATA = "data";
+    //public static final String KEY_CODE = "code";
+    public static final String KEY_CODE = "jsonrpc";
+    //public static final String KEY_DATA = "data";
+    public static final String KEY_DATA = "result";
     public static final String KEY_ERROR = "error";
     public static final String KEY_MESSAGE = "message";
 
     /* constant value of key_code */
-    public static final String VALUE_CODE_OK = "00";
+    //public static final String VALUE_CODE_OK = "00";
+    public static final String VALUE_CODE_OK = "2.0";
     public static final String VALUE_CODE_RFID_ERROR = "02";
 
     //KE RFID
-    public static final String KEY_RFID = "rfid";
+    //public static final String KEY_RFID = "rfid";
+    public static final String KEY_RFID = "RFID";
 
     // #rfid -> jan
-    public static final String KEY_JANCODE_1 = "jancode_1";
+    //public static final String KEY_JANCODE_1 = "jancode_1";
+    public static final String KEY_JANCODE_1 = "Product_code";
+    //public static final String KEY_JANCODE_2 = "jancode_2";
     public static final String KEY_JANCODE_2 = "jancode_2";
 
 

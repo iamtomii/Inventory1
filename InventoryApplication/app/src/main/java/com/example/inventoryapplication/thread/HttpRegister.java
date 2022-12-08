@@ -122,21 +122,21 @@ public class HttpRegister extends AsyncTask<String, String, String> {
                 case Config.CODE_LOGIN:
                     // #HUYNHQUANGVINH send list rfid
                     //jsonObject.put(Constants.COLUMN_RFID, new JSONArray(params[2]));
-                    jsonObject.put("force_update",  true);
-                    jsonObject.put("drgm_pos_shop_cd",  "SHOPTEST");
+                    //jsonObject.put("force_update",  true);
+                    //jsonObject.put("drgm_pos_shop_cd",  "SHOPTEST");
                     jsonObject.put("drgm_rfid_cd",  params[2]);
-                    jsonObject.put("drgm_jan",  "2002000005526");
+                    /*jsonObject.put("drgm_jan",  "2002000005526");
                     jsonObject.put("drgm_goods_name",  "Thuật giả kim - Tập "+numRan());
                     jsonObject.put("drgm_price_tax_off",  1);
                     jsonObject.put("drgm_cost_rate",  19.9);
                     jsonObject.put("drgm_cost_price",  65000);
                     jsonObject.put("drgm_media_cd",  "43800");
-                    jsonObject.put("drgm_product_id",  "aaaa");
+                    jsonObject.put("drgm_product_id",  "aaaa");*/
                     break;
                 default:
                     break;
             }
-            jsonObject.put(Config.API_KEY, Config.API_KEY_VALUE);
+            //jsonObject.put(Config.API_KEY, Config.API_KEY_VALUE);
 
         } catch (JSONException e) {
             e.printStackTrace();
